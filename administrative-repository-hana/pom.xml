@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>administrative-repository</artifactId>
+    <artifactId>administrative-repository-hana</artifactId>
 
 
 </project>
