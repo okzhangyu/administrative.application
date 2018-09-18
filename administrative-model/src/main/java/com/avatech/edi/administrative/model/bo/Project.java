@@ -2,6 +2,7 @@ package com.avatech.edi.administrative.model.bo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -13,10 +14,11 @@ import javax.persistence.Table;
 @Table(name="AVA_OA_VIEW_OPRJ")
 public class Project implements IProject {
 
-    @Column(name="ProjectCode")
+    @Id
+    @Column(name="Projectcode")
     private String projectCode;
 
-    @Column(name="ProjectName")
+    @Column(name="Projectame")
     private String projectName;
 
     @Column(name="Active")

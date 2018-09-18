@@ -2,6 +2,7 @@ package com.avatech.edi.administrative.model.bo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -12,10 +13,11 @@ import javax.persistence.Table;
 @Table(name="AVA_OA_VIEW_OACT")
 public class Account implements IAccount {
 
-    @Column(name="AcctCode")
+    @Id
+    @Column(name="Acctcode")
     private String acctCode;
 
-    @Column(name="AcctName")
+    @Column(name="Acctname")
     private String acctName;
 
     @Column(name="Active")

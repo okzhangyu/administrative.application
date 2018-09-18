@@ -1,9 +1,12 @@
 package com.avatech.common.edi.administrative.common.exception;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
+
 /**
  * Created by asus on 2018/9/13.
  */
-public class BusinessException extends RuntimeException {
+public class BusinessException extends BaseException {
+
     private static final long serialVersionUID = 1L;
 
     private String code = "";
@@ -38,7 +41,7 @@ public class BusinessException extends RuntimeException {
     }
 
     public BusinessException(String code,String message){
-        super(message);
+        super(code,message);
         this.code = code;
         this.message = message;
     }

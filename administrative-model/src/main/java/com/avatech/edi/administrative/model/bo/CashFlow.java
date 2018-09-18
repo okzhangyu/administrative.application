@@ -1,6 +1,7 @@
 package com.avatech.edi.administrative.model.bo;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -10,10 +11,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name="AVA_OA_VIEW_OCFW")
 public class CashFlow implements ICashFlow {
-    @Column(name="CashFlowCode")
+
+    @Id
+    @Column(name="Cashflowcode")
     private String cashFlowCode;
 
-    @Column(name="CashFlowName")
+    @Column(name="Cashflowname")
     private String cashFlowName;
 
     @Column(name="Active")

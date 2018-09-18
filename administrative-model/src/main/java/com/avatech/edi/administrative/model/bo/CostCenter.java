@@ -2,6 +2,7 @@ package com.avatech.edi.administrative.model.bo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -10,15 +11,16 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="AVA_OA_VIEW_OPRC")
-public class Cost implements ICost {
+public class CostCenter implements ICostCenter {
 
-    @Column(name="PrcCode")
+    @Id
+    @Column(name="Prccode")
     private String proCode;
 
-    @Column(name="PrcName")
+    @Column(name="Prcname")
     private String proName;
 
-    @Column(name="DimCode")
+    @Column(name="Dimcode")
     private Integer dimCode;
 
     @Column(name="Active")
@@ -56,10 +58,10 @@ public class Cost implements ICost {
         this.active = active;
     }
 
-    public Cost() {
+    public CostCenter() {
     }
 
-    public Cost(String proCode, String proName, Integer dimCode, String active) {
+    public CostCenter(String proCode, String proName, Integer dimCode, String active) {
         this.proCode = proCode;
         this.proName = proName;
         this.dimCode = dimCode;

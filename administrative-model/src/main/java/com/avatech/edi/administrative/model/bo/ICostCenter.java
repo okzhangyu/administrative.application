@@ -3,7 +3,7 @@ package com.avatech.edi.administrative.model.bo;
 /**
  * Created by asus on 2018/9/7.
  */
-public interface ICost {
+public interface ICostCenter {
      String getProCode();
 
      void setProCode(String proCode);
