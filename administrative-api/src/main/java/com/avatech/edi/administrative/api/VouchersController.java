@@ -44,9 +44,9 @@ public class VouchersController {
         voucher.setOaNumber("1");
         voucher.setDocDate(new Date());
         voucher.setComments("this is test");
-        List<IVoucherItem> voucherItems = new ArrayList<>();
+        List<VoucherItem> voucherItems = new ArrayList<>();
 
-        IVoucherItem voucherItem = new VoucherItem();
+        VoucherItem voucherItem = new VoucherItem();
         voucherItem.setAccountCode("100101");
         voucherItem.setAccountName("人民币");
         voucherItem.setCashFlowCode("90");

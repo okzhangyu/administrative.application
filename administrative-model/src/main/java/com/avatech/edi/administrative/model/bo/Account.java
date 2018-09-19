@@ -1,9 +1,6 @@
 package com.avatech.edi.administrative.model.bo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by asus on 2018/9/7.
@@ -14,6 +11,12 @@ import javax.persistence.Table;
 public class Account implements IAccount {
 
     @Id
+    @Column(name = "Key")
+    private String key;
+
+    @Column(name = "Companyname")
+    private String companyName;
+
     @Column(name="Acctcode")
     private String acctCode;
 
@@ -23,36 +26,66 @@ public class Account implements IAccount {
     @Column(name="Active")
     private String active;
 
+    @Column(name = "Acctlevel")
+    private String acctLevel;
+
+    @Override
+    public String getKey() {
+        return key;
+    }
+
+    @Override
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    @Override
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    @Override
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    @Override
     public String getAcctCode() {
         return acctCode;
     }
 
+    @Override
     public void setAcctCode(String acctCode) {
         this.acctCode = acctCode;
     }
 
+    @Override
     public String getAcctName() {
         return acctName;
     }
 
+    @Override
     public void setAcctName(String acctName) {
         this.acctName = acctName;
     }
 
+    @Override
     public String getActive() {
         return active;
     }
 
+    @Override
     public void setActive(String active) {
         this.active = active;
     }
 
-    public Account() {
+    @Override
+    public String getAcctLevel() {
+        return acctLevel;
     }
 
-    public Account(String acctCode, String acctName, String active) {
-        this.acctCode = acctCode;
-        this.acctName = acctName;
-        this.active = active;
+    @Override
+    public void setAcctLevel(String acctLevel) {
+        this.acctLevel = acctLevel;
     }
 }

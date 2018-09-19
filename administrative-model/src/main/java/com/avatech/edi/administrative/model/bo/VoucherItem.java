@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class VoucherItem implements IVoucherItem {
 
     @EmbeddedId
-    private VoucherItemKey dataTempleKey;
+    private VoucherItemKey voucherItemKey;
 
     @Column(name = "Oanumber")
     private String oaNumber;
@@ -201,5 +201,11 @@ public class VoucherItem implements IVoucherItem {
         this.shortName = shortName;
     }
 
+    public VoucherItemKey getVoucherItemKey() {
+        return voucherItemKey;
+    }
 
+    public void setVoucherItemKey(VoucherItemKey voucherItemKey) {
+        this.voucherItemKey = voucherItemKey;
+    }
 }

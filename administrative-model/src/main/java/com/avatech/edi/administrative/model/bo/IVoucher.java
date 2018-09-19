@@ -59,8 +59,8 @@ public interface IVoucher {
 
      void setBOneDocEntry(Integer bOneDocEntry);
 
-     List<IVoucherItem> getVoucherItems();
+     List<VoucherItem> getVoucherItems();
 
-     void setVoucherItems(List<IVoucherItem> voucherItems);
+     void setVoucherItems(List<VoucherItem> voucherItems);
 
 }

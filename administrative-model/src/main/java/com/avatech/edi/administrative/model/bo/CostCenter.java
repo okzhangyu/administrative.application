@@ -1,9 +1,6 @@
 package com.avatech.edi.administrative.model.bo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by asus on 2018/9/7.
@@ -14,6 +11,12 @@ import javax.persistence.Table;
 public class CostCenter implements ICostCenter {
 
     @Id
+    @Column(name = "Key")
+    private String key;
+
+    @Column(name = "Companyname")
+    private String companyName;
+
     @Column(name="Prccode")
     private String proCode;
 
@@ -26,45 +29,63 @@ public class CostCenter implements ICostCenter {
     @Column(name="Active")
     private String active;
 
+    @Override
     public String getProCode() {
         return proCode;
     }
 
+    @Override
     public void setProCode(String proCode) {
         this.proCode = proCode;
     }
 
+    @Override
     public String getProName() {
         return proName;
     }
 
+    @Override
     public void setProName(String proName) {
         this.proName = proName;
     }
 
+    @Override
     public Integer getDimCode() {
         return dimCode;
     }
 
+    @Override
     public void setDimCode(Integer dimCode) {
         this.dimCode = dimCode;
     }
 
+    @Override
     public String getActive() {
         return active;
     }
 
+    @Override
     public void setActive(String active) {
         this.active = active;
     }
 
-    public CostCenter() {
+    @Override
+    public String getKey() {
+        return key;
     }
 
-    public CostCenter(String proCode, String proName, Integer dimCode, String active) {
-        this.proCode = proCode;
-        this.proName = proName;
-        this.dimCode = dimCode;
-        this.active = active;
+    @Override
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    @Override
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    @Override
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 }

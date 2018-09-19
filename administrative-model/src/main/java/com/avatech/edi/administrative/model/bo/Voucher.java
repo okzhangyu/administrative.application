@@ -1,9 +1,6 @@
 package com.avatech.edi.administrative.model.bo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.DateTimeException;
 import java.util.Date;
 import java.util.List;
@@ -55,8 +52,9 @@ public class Voucher implements IVoucher {
     @Column(name = "Bonedocentry")
     private Integer boneDocEntry;
 
-
-    private List<IVoucherItem> voucherItems;
+    @OneToMany
+    @JoinTable(name = "AVA_OA_JDT1")
+    private List<VoucherItem> voucherItems;
 
     @Override
     public String getOaNumber() {
@@ -164,27 +162,33 @@ public class Voucher implements IVoucher {
         this.createDate = createDate;
     }
 
+    @Override
     public Integer getCreateTime() {
         return createTime;
     }
 
+    @Override
     public void setCreateTime(Integer createTime) {
         this.createTime = createTime;
     }
 
+    @Override
     public Integer getBOneDocEntry() {
         return boneDocEntry;
     }
 
+    @Override
     public void setBOneDocEntry(Integer boneDocEntry) {
         this.boneDocEntry = boneDocEntry;
     }
 
-    public List<IVoucherItem> getVoucherItems() {
+    @Override
+    public List<VoucherItem> getVoucherItems() {
         return voucherItems;
     }
 
-    public void setVoucherItems(List<IVoucherItem> voucherItems) {
+    @Override
+    public void setVoucherItems(List<VoucherItem> voucherItems) {
         this.voucherItems = voucherItems;
     }
 
