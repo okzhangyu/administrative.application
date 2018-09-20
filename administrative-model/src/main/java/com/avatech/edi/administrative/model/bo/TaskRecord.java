@@ -12,41 +12,42 @@ import javax.persistence.Table;
 @Entity
 @Table(name="AVA_OA_TASK")
 public class TaskRecord implements ITaskRecord {
+
     @Id
-    @Column(name="docEntry")
+    @Column(name="Docentry")
     private Integer docEntry;
 
-    @Column(name="objectCode")
+    @Column(name="Objectcode")
     private String objectCode;
 
-    @Column(name="companyDB")
-    private String companyDB;
+    @Column(name="Companyname")
+    private String companyName;
 
-    @Column(name="uniqueKey")
+    @Column(name="Uniquekey")
     private String uniqueKey;
 
-    @Column(name="isSync")
+    @Column(name="Issync")
     private String isSync;
 
-    @Column(name="errorTime")
+    @Column(name="Errortime")
     private Integer errorTime;
 
-    @Column(name="syncMessage")
+    @Column(name="Syncmessage")
     private String syncMessage;
 
-    @Column(name="opType")
+    @Column(name="Optype")
     private String opType;
 
-    @Column(name="createDate")
+    @Column(name="Createdate")
     private String createDate;
 
-    @Column(name="createTime")
+    @Column(name="Createtime")
     private Integer createTime;
 
-    @Column(name="syncDate")
+    @Column(name="Syncdate")
     private String syncDate;
 
-    @Column(name="syncTime")
+    @Column(name="Synctime")
     private Integer syncTime;
 
     public Integer getDocEntry() {
@@ -65,12 +66,12 @@ public class TaskRecord implements ITaskRecord {
         this.objectCode = objectCode;
     }
 
-    public String getCompanyDB() {
-        return companyDB;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setCompanyDB(String companyDB) {
-        this.companyDB = companyDB;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     public String getUniqueKey() {
@@ -148,18 +149,4 @@ public class TaskRecord implements ITaskRecord {
     public TaskRecord() {
     }
 
-    public TaskRecord(Integer docEntry, String objectCode, String companyDB, String uniqueKey, String isSync, Integer errorTime, String syncMessage, String opType, String createDate, Integer createTime, String syncDate, Integer syncTime) {
-        this.docEntry = docEntry;
-        this.objectCode = objectCode;
-        this.companyDB = companyDB;
-        this.uniqueKey = uniqueKey;
-        this.isSync = isSync;
-        this.errorTime = errorTime;
-        this.syncMessage = syncMessage;
-        this.opType = opType;
-        this.createDate = createDate;
-        this.createTime = createTime;
-        this.syncDate = syncDate;
-        this.syncTime = syncTime;
-    }
 }

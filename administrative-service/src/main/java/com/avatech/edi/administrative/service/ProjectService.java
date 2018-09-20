@@ -19,8 +19,8 @@ public class ProjectService {
     @Autowired
     private IProjectRepository projectRepository;
 
-    public List<Project> fetchProjects(){
-        List<Project> projectList = projectRepository.findProjects();
-        return projectList;
+    public Project fetchProject(String projectCode){
+        Project project = projectRepository.findByProjectCode(projectCode);
+        return project;
     }
 }

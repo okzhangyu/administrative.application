@@ -29,8 +29,20 @@ public class BORepositoryBusinessOne {
 
     public final static BORepositoryBusinessOne getInstance(B1Connection ib1Connection) {
         synchronized (BORepositoryBusinessOne.class) {
-            if (null == boRepositoryBusinessOne || (boRepositoryBusinessOne != null && !boRepositoryBusinessOne.getCompany().getCompanyDB().equals(ib1Connection.getCompanyDB()))) {
+            if (null == boRepositoryBusinessOne) {
                 boRepositoryBusinessOne = new BORepositoryBusinessOne(ib1Connection);
+            }else if( boRepositoryBusinessOne != null && !boRepositoryBusinessOne.getCompany().getCompanyDB().equals(ib1Connection.getCompanyDB())){
+                boRepositoryBusinessOne.server = ib1Connection.getServer();
+                boRepositoryBusinessOne.companyDB = ib1Connection.getCompanyDB();
+                boRepositoryBusinessOne.userName = ib1Connection.getUserName();
+                boRepositoryBusinessOne.password = ib1Connection.getPassword();
+                boRepositoryBusinessOne.laguage = ib1Connection.getLanguage();
+                boRepositoryBusinessOne.licenseServer = ib1Connection.getLicenseServer();
+                boRepositoryBusinessOne.sldServer = ib1Connection.getSLDServer();
+                boRepositoryBusinessOne.dbServerType = ib1Connection.getDBServerType();
+                boRepositoryBusinessOne.dbUsername = ib1Connection.getDBUserName();
+                boRepositoryBusinessOne.dbPassword = ib1Connection.getDBPassword();
+                boRepositoryBusinessOne.useTrusted = ib1Connection.getIsUserTrusted();
             }
         }
         return boRepositoryBusinessOne;
@@ -56,10 +68,12 @@ public class BORepositoryBusinessOne {
             if (null == company) {
                 return this.connect();
             } else {
-                if(!company.isConnected() || !companyDB.equals(company.getCompanyDB())){
+                if(!companyDB.equals(company.getCompanyDB())){
                     company.disconnect();
                     return this.connect();
                 }
+                if(!company.isConnected())
+                    return  this.connect();
                 return company;
             }
         }

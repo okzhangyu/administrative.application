@@ -1,46 +1,75 @@
 package com.avatech.edi.administrative.model.bo;
 
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * Created by asus on 2018/9/7.
  */
+@Entity
+@Table(name = "AVA_OA_JDT1")
 public class VoucherItem implements IVoucherItem {
+
+    @EmbeddedId
+    private VoucherItemKey voucherItemKey;
+
+    @Column(name = "Oanumber")
     private String oaNumber;
-    private Integer lineNumber;
+
+    @Column(name = "Accountcode")
     private String accountCode;
+
+    @Column(name = "Accountname")
     private String accountName;
+
+    @Column(name = "Credit")
     private Double credit;
+
+    @Column(name = "Debit")
     private Double debit;
+
+    @Column(name = "Ocrcode")
     private String ocrCode;
+
+    @Column(name = "Ocrcode2")
     private String ocrCode2;
+
+    @Column(name = "Summary")
     private String summary;
+
+    @Column(name = "Project")
     private String project;
+
+    @Column(name = "Cashflowcode")
     private String cashFlowCode;
-    private String distributionRule;
+
+    @Column(name = "Cardcode")
     private String cardCode;
+
+    @Column(name = "Vat")
     private Double vat;
+
+    @Column(name = "Controlcode")
     private String controlCode;
-    private String acctName;
+
+    @Column(name = "Shortname")
+    private String shortName;
 
 
     @Override
-    public String getOaNumber() {
+    public String getOANumber() {
         return oaNumber;
     }
 
     @Override
-    public void setOaNumber(String oaNumber) {
+    public void setOANumber(String oaNumber) {
         this.oaNumber = oaNumber;
     }
 
-    @Override
-    public Integer getLineNumber() {
-        return lineNumber;
-    }
-
-    @Override
-    public void setLineNumber(Integer lineNumber) {
-        this.lineNumber = lineNumber;
-    }
 
     @Override
     public String getAccountCode() {
@@ -133,16 +162,6 @@ public class VoucherItem implements IVoucherItem {
     }
 
     @Override
-    public String getDistributionRule() {
-        return distributionRule;
-    }
-
-    @Override
-    public void setDistributionRule(String distributionRule) {
-        this.distributionRule = distributionRule;
-    }
-
-    @Override
     public String getCardCode() {
         return cardCode;
     }
@@ -173,34 +192,20 @@ public class VoucherItem implements IVoucherItem {
     }
 
     @Override
-    public String getAcctName() {
-        return acctName;
+    public String getShortName() {
+        return shortName;
     }
 
     @Override
-    public void setAcctName(String acctName) {
-        this.acctName = acctName;
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
     }
 
-    public VoucherItem() {
+    public VoucherItemKey getVoucherItemKey() {
+        return voucherItemKey;
     }
 
-    public VoucherItem(String oaNumber, Integer lineNumber, String accountCode, String accountName, Double credit, Double debit, String ocrCode, String ocrCode2, String summary, String project, String cashFlowCode, String distributionRule, String cardCode, Double vat, String controlCode, String acctName) {
-        this.oaNumber = oaNumber;
-        this.lineNumber = lineNumber;
-        this.accountCode = accountCode;
-        this.accountName = accountName;
-        this.credit = credit;
-        this.debit = debit;
-        this.ocrCode = ocrCode;
-        this.ocrCode2 = ocrCode2;
-        this.summary = summary;
-        this.project = project;
-        this.cashFlowCode = cashFlowCode;
-        this.distributionRule = distributionRule;
-        this.cardCode = cardCode;
-        this.vat = vat;
-        this.controlCode = controlCode;
-        this.acctName = acctName;
+    public void setVoucherItemKey(VoucherItemKey voucherItemKey) {
+        this.voucherItemKey = voucherItemKey;
     }
 }

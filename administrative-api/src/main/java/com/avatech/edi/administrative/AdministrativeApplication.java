@@ -12,3 +12,4 @@ public class AdministrativeApplication  {
         SpringApplication.run(AdministrativeApplication.class,args);
     }
 }
+

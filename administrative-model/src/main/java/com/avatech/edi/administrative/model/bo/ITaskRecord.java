@@ -14,9 +14,9 @@ public interface ITaskRecord {
 
      void setObjectCode(String objectCode);
 
-     String getCompanyDB();
+     String getCompanyName();
 
-     void setCompanyDB(String companyDB);
+     void setCompanyName(String companyName);
 
      String getUniqueKey();
 
