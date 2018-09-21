@@ -12,10 +12,10 @@ import javax.persistence.*;
 public class Project implements IProject {
 
     @Id
-    @Column(name = "Key")
+    @Column(name = "Uniquekey")
     private String key;
 
-    @Column(name = "Companyname")
+    @Column(name = "Companycode")
     private String companyName;
 
     @Column(name="Projectcode")

@@ -6,6 +6,7 @@ import com.avatech.edi.administrative.repository.ICashFlowRepositoty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 /**
  * Created by asus on 2018/9/14.
  */
+@Service
 public class CashFlowService {
     private final Logger logger = LoggerFactory.getLogger(ProjectService.class);
 

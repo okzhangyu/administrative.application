@@ -1,6 +1,6 @@
 package com.avatech.edi.administrative.businessone.journal;
 
-import com.avatech.common.edi.administrative.common.Utils.StringUtils;
+import com.avatech.common.edi.administrative.common.utils.StringUtils;
 import com.avatech.edi.administrative.businessone.B1Exception;
 import com.avatech.edi.administrative.businessone.BORepositoryBusinessOne;
 import com.avatech.edi.administrative.model.bo.B1Connection;

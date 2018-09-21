@@ -14,7 +14,7 @@ public class Account implements IAccount {
     @Column(name = "Uniquekey")
     private String key;
 
-    @Column(name = "Companyname")
+    @Column(name = "Companycode")
     private String companyName;
 
     @Column(name="Acctcode")

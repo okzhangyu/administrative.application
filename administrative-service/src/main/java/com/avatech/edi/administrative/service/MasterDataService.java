@@ -1,17 +1,12 @@
 package com.avatech.edi.administrative.service;
 
-import com.avatech.edi.administrative.model.bo.CashFlow;
-import com.avatech.edi.administrative.model.bo.MasterData;
-import com.avatech.edi.administrative.model.bo.TaskRecord;
-import com.avatech.edi.administrative.model.config.MasterDataType;
 import com.avatech.edi.administrative.repository.ICashFlowRepositoty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-
+@Service
 public class MasterDataService {
 
     private final Logger logger = LoggerFactory.getLogger(ProjectService.class);
