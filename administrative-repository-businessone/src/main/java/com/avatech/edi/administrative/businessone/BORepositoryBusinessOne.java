@@ -31,7 +31,7 @@ public class BORepositoryBusinessOne {
         synchronized (BORepositoryBusinessOne.class) {
             if (null == boRepositoryBusinessOne) {
                 boRepositoryBusinessOne = new BORepositoryBusinessOne(ib1Connection);
-            }else if( boRepositoryBusinessOne != null && !boRepositoryBusinessOne.getCompany().getCompanyDB().equals(ib1Connection.getCompanyDB())){
+            }else if( boRepositoryBusinessOne != null && !boRepositoryBusinessOne.companyDB.equals(ib1Connection.getCompanyDB())){
                 boRepositoryBusinessOne.server = ib1Connection.getServer();
                 boRepositoryBusinessOne.companyDB = ib1Connection.getCompanyDB();
                 boRepositoryBusinessOne.userName = ib1Connection.getUserName();
@@ -89,33 +89,31 @@ public class BORepositoryBusinessOne {
     }
 
     private ICompany connect()throws B1Exception {
-        try{
-            company = SBOCOMUtil.newCompany();
-            company.setServer(this.server);
-            company.setCompanyDB(this.companyDB);
-            company.setUserName(this.userName);
-            company.setPassword(this.password);
-            company.setDbServerType(this.dbServerType);
-            company.setUseTrusted(this.useTrusted);
-            company.setLanguage(this.laguage);
-            company.setDbUserName(this.dbUsername);
-            company.setDbPassword(this.dbPassword);
-            company.setSLDServer(this.sldServer);
-            company.setLicenseServer(this.licenseServer);
 
-            int connectionResult = company.connect();
-            if (connectionResult == 0) {
-                logger.info("Successfully connected to " + company.getCompanyName());
-            } else {
-                SBOErrorMessage errMsg = company.getLastError();
-                throw new B1Exception("Cannot connect to server: "
-                        + errMsg.getErrorMessage()
-                        + " "
-                        + errMsg.getErrorCode());
-            }
-            return company;
-        }catch (Exception e){
-            throw new B1Exception(e);
+        company = SBOCOMUtil.newCompany();
+        company.setServer(this.server);
+        company.setCompanyDB(this.companyDB);
+        company.setUserName(this.userName);
+        company.setPassword(this.password);
+        company.setDbServerType(this.dbServerType);
+        company.setUseTrusted(this.useTrusted);
+        company.setLanguage(this.laguage);
+        company.setDbUserName(this.dbUsername);
+        company.setDbPassword(this.dbPassword);
+        company.setSLDServer(this.sldServer);
+        company.setLicenseServer(this.licenseServer);
+
+        int connectionResult = company.connect();
+        if (connectionResult == 0) {
+            logger.info("Successfully connected to " + company.getCompanyName());
+        } else {
+            SBOErrorMessage errMsg = company.getLastError();
+            throw new B1Exception("Cannot connect to server: "
+                    + errMsg.getErrorMessage()
+                    + " "
+                    + errMsg.getErrorCode());
         }
+        return company;
+
     }
 }

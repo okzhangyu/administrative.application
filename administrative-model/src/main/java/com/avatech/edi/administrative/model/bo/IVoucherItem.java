@@ -49,10 +49,6 @@ public interface IVoucherItem {
 
       void setCardCode(String cardCode);
 
-      Double getVat();
-
-      void setVat(Double vat);
-
       String getControlCode();
 
       void setControlCode(String controlCode);

@@ -3,8 +3,7 @@ package com.avatech.edi.administrative.repository;
 import com.avatech.edi.administrative.model.bo.Voucher;
 import org.springframework.data.repository.CrudRepository;
 
-public interface IVoucherRepository extends CrudRepository<Voucher,Integer> {
+public interface IVoucherRepository {
 
-    Voucher findByOaNumber(String oaNumber);
 
 }

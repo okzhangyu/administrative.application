@@ -13,9 +13,6 @@ import org.springframework.stereotype.Service;
 public class VoucherService {
 
     @Autowired
-    private IVoucherRepository voucherRepository;
-
-    @Autowired
     private B1Manager b1Manager;
 
     @Autowired
@@ -23,8 +20,8 @@ public class VoucherService {
 
 
 
-    public void saveVoucher(Voucher voucher){
+    public String saveVoucher(Voucher voucher){
         B1Connection connection = b1Manager.getB1ConnInstance(voucher.getCompanyName());
-        b1JournalEntryService.createJournalEntry(voucher,connection);
+        return b1JournalEntryService.createJournalEntry(voucher,connection);
     }
 }
