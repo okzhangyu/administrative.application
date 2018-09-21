@@ -6,12 +6,12 @@ spring:
     driver-class-name: com.sap.db.jdbc.Driver
   jpa:
     hibernate:
-              ddl-auto: none
-              show-sql: true
+      ddl-auto: none
+      show-sql: true
 server:
-  port: 8080
+  port: 9092
 logging:
   level:
     org:
       hibernate:
-              SQL: DEBUG
+        SQL: DEBUG

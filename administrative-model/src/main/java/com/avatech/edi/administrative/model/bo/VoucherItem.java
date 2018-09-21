@@ -10,55 +10,21 @@ import javax.persistence.Table;
 /**
  * Created by asus on 2018/9/7.
  */
-@Entity
-@Table(name = "AVA_OA_JDT1")
 public class VoucherItem implements IVoucherItem {
 
-    @EmbeddedId
-    private VoucherItemKey voucherItemKey;
-
-    @Column(name = "Oanumber")
     private String oaNumber;
-
-    @Column(name = "Accountcode")
     private String accountCode;
-
-    @Column(name = "Accountname")
     private String accountName;
-
-    @Column(name = "Credit")
     private Double credit;
-
-    @Column(name = "Debit")
     private Double debit;
-
-    @Column(name = "Ocrcode")
     private String ocrCode;
-
-    @Column(name = "Ocrcode2")
     private String ocrCode2;
-
-    @Column(name = "Summary")
     private String summary;
-
-    @Column(name = "Project")
     private String project;
-
-    @Column(name = "Cashflowcode")
     private String cashFlowCode;
-
-    @Column(name = "Cardcode")
     private String cardCode;
-
-    @Column(name = "Vat")
-    private Double vat;
-
-    @Column(name = "Controlcode")
     private String controlCode;
-
-    @Column(name = "Shortname")
     private String shortName;
-
 
     @Override
     public String getOANumber() {
@@ -93,6 +59,8 @@ public class VoucherItem implements IVoucherItem {
 
     @Override
     public Double getCredit() {
+        if(credit == null)
+            return 0.0;
         return credit;
     }
 
@@ -103,6 +71,8 @@ public class VoucherItem implements IVoucherItem {
 
     @Override
     public Double getDebit() {
+        if(debit == null)
+            return 0.0;
         return debit;
     }
 
@@ -172,16 +142,6 @@ public class VoucherItem implements IVoucherItem {
     }
 
     @Override
-    public Double getVat() {
-        return vat;
-    }
-
-    @Override
-    public void setVat(Double vat) {
-        this.vat = vat;
-    }
-
-    @Override
     public String getControlCode() {
         return controlCode;
     }
@@ -201,11 +161,22 @@ public class VoucherItem implements IVoucherItem {
         this.shortName = shortName;
     }
 
-    public VoucherItemKey getVoucherItemKey() {
-        return voucherItemKey;
-    }
-
-    public void setVoucherItemKey(VoucherItemKey voucherItemKey) {
-        this.voucherItemKey = voucherItemKey;
+    @Override
+    public String toString() {
+        return "VoucherItem{" +
+                "oaNumber:'" + oaNumber + '\'' +
+                ", accountCode:'" + accountCode + '\'' +
+                ", accountName:'" + accountName + '\'' +
+                ", credit=" + credit +
+                ", debit=" + debit +
+                ", ocrCode:'" + ocrCode + '\'' +
+                ", ocrCode2:'" + ocrCode2 + '\'' +
+                ", summary:'" + summary + '\'' +
+                ", project:'" + project + '\'' +
+                ", cashFlowCode:'" + cashFlowCode + '\'' +
+                ", cardCode:'" + cardCode + '\'' +
+                ", controlCode:'" + controlCode + '\'' +
+                ", shortName:'" + shortName + '\'' +
+                '}';
     }
 }
