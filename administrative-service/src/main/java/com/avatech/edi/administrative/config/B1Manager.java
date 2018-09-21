@@ -15,25 +15,29 @@ public class B1Manager {
 
     private static List<B1Connection> b1Connections;
 
-    private List<B1Connection> getB1Connections(){
+    private List<B1Connection> getB1Connections() {
 
-        try {
-            String path = getClass().getClassLoader().getResource(COMPANY_INFO_CONFIG).toString();
-            path = path.replace("\\", "/");
-            if (path.contains(":")) {
-                path = path.replace("file:", "");// 2
-            }
-            FileInputStream inputStream = null;
-            inputStream = new FileInputStream(path);
-            Reader reader = new InputStreamReader(inputStream, "UTF-8");
-            Gson gson = new GsonBuilder().create();
-            List<B1Connection> companyInfos = gson.fromJson(reader, new TypeToken<List<B1Connection>>(){}.getType());
-            return companyInfos;
-        } catch (FileNotFoundException e) {
-            throw new ServiceException("50001","公司信息配置文件未找到");
-        } catch (UnsupportedEncodingException e) {
-            throw new ServiceException("50002","读取公司信息配置文件错误");
-        }
+        // try {
+//            String path = getClass().getClassLoader().getResource(COMPANY_INFO_CONFIG).toString();
+//            path = path.replace("\\", "/");
+//            if (path.contains(":")) {
+//                path = path.replace("file:", "");// 2
+//            }
+//            FileInputStream inputStream = null;
+//            inputStream = new FileInputStream(path);
+//            Reader reader = new InputStreamReader(inputStream, "UTF-8");
+        Gson gson = new GsonBuilder().create();
+        List<B1Connection> companyInfos = gson.fromJson("[{\"companyName\":\"A01\",\"server\":\"10.10.8.41:30015\",\"companyDB\":\"SBO_JS_KFCS01\",\"userName\":\"A100\",\"password\":\"123456\",\"licenseServer\":\"10.10.8.41:40000\",\"sldServer\":\"10.10.8.41:40000\",\"dbServiceType\":9,\"dbUsername\":\"SYSTEM\",\"dbPassword\":\"Consen2018\",\"laguage\":15,\"useTrusted\":\"false\"},{\"companyName\":\"A02\",\"server\":\"10.10.8.41:30015\",\"companyDB\":\"SBO_JS_KFCS02\",\"userName\":\"A100\",\"password\":\"123456\",\"licenseServer\":\"10.10.8.41:40000\",\"sldServer\":\"10.10.8.41:40000\",\"dbServiceType\":9,\"dbUsername\":\"SYSTEM\",\"dbPassword\":\"Consen2018\",\"laguage\":15,\"useTrusted\":\"false\"},{\"companyName\":\"A03\",\"server\":\"10.10.8.41:30015\",\"companyDB\":\"SBO_JS_KFCS03\",\"userName\":\"A100\",\"password\":\"123456\",\"licenseServer\":\"10.10.8.41:40000\",\"sldServer\":\"10.10.8.41:40000\",\"dbServiceType\":9,\"dbUsername\":\"SYSTEM\",\"dbPassword\":\"Consen2018\",\"laguage\":15,\"useTrusted\":\"false\"}]"
+                , new TypeToken<List<B1Connection>>() {
+                }.getType());
+        return companyInfos;
+
+// }catch (FileNotFoundException e) {
+//            throw new ServiceException("50001","公司信息配置文件未找到");
+//        }
+//        catch (UnsupportedEncodingException e) {
+//            throw new ServiceException("50002","读取公司信息配置文件错误");
+//        }
 
     }
 

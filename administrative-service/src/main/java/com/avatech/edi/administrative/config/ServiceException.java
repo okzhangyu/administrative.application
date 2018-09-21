@@ -1,6 +1,8 @@
 package com.avatech.edi.administrative.config;
 
-public class ServiceException extends RuntimeException{
+import com.avatech.common.edi.administrative.common.exception.BaseException;
+
+public class ServiceException extends BaseException {
     private String code;
 
     private String message;

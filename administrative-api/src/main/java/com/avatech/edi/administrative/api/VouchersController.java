@@ -1,14 +1,14 @@
 package com.avatech.edi.administrative.api;
 
 import com.avatech.common.edi.administrative.common.exception.BaseException;
-import com.avatech.edi.administrative.model.bo.IVoucher;
-import com.avatech.edi.administrative.model.bo.IVoucherItem;
-import com.avatech.edi.administrative.model.bo.Voucher;
-import com.avatech.edi.administrative.model.bo.VoucherItem;
+import com.avatech.edi.administrative.model.bo.*;
 import com.avatech.edi.administrative.model.dto.Result;
 import com.avatech.edi.administrative.service.VoucherService;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.ResultCheckStyle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
@@ -19,17 +19,18 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("administrative")
+@RequestMapping("administrative/v1/*")
 public class VouchersController {
 
+    private Logger logger = LoggerFactory.getLogger(VouchersController.class);
     @Autowired
     private VoucherService voucherService;
 
-    @PostMapping("voucher")
-    public Result generateVoucher(@RequestBody Voucher voucher){
+    @RequestMapping(value = "voucher",method ={RequestMethod.POST})
+    public @ResponseBody Result generateVoucher(@RequestBody Voucher voucher){
         Result result = new Result();
         try{
-            voucherService.saveVoucher(voucher);
+            result = Result.ok(voucherService.saveVoucher(voucher));
         }catch (BaseException e){
             return Result.error("10000",e.getMessage());
         }catch (Exception e){

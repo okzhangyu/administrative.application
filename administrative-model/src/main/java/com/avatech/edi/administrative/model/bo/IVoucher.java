@@ -7,10 +7,6 @@ import java.util.List;
  */
 public interface IVoucher {
 
-     Integer getDocEntry();
-
-     void setDocEntry(Integer docEntry);
-
      String getOaNumber();
 
      void setOaNumber(String oaNumber);
@@ -19,10 +15,6 @@ public interface IVoucher {
 
      void setDocDate(Date docDate);
 
-     Integer getDocTime();
-
-     void setDocTime(Integer docTime);
-
      String getComments();
 
      void setComments(String comments);
@@ -30,34 +22,6 @@ public interface IVoucher {
      String getCompanyName();
 
      void setCompanyName(String companyName);
-
-     Date getCreateDate();
-
-     void setCreateDate(Date createDate);
-
-     Integer getCreateTime();
-
-     void setCreateTime(Integer createTime);
-
-     String getIsSyncBOne();
-
-     void setIsSyncBOne(String isSyncBOne);
-
-     String getBOneSyncMsg();
-
-     void setBOneSyncMsg(String bOneSyncMsg);
-
-     String getIsSyncOA();
-
-     void setIsSyncOA(String isSyncOA);
-
-     String getOASyncMsg();
-
-     void setOASyncMsg(String oaSyncMsg);
-
-     Integer getBOneDocEntry();
-
-     void setBOneDocEntry(Integer bOneDocEntry);
 
      List<VoucherItem> getVoucherItems();
 
