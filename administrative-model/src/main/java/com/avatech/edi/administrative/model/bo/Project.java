@@ -76,4 +76,5 @@ public class Project implements IProject {
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
+
 }

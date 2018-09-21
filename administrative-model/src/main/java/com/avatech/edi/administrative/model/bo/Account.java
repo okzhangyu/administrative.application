@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class Account implements IAccount {
 
     @Id
-    @Column(name = "Key")
+    @Column(name = "Uniquekey")
     private String key;
 
     @Column(name = "Companyname")
@@ -88,4 +88,5 @@ public class Account implements IAccount {
     public void setAcctLevel(String acctLevel) {
         this.acctLevel = acctLevel;
     }
+
 }

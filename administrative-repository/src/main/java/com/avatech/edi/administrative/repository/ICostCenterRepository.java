@@ -6,5 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 /**
  * Created by asus on 2018/9/14.
  */
-public interface ICostRepository extends CrudRepository<CostCenter,String>{
+public interface ICostCenterRepository extends CrudRepository<CostCenter,String>{
+
+    CostCenter findByKey(String key);
 }

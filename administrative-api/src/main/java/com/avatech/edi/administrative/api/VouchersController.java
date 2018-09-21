@@ -26,7 +26,7 @@ public class VouchersController {
     private VoucherService voucherService;
 
     @PostMapping("voucher")
-    public Result generateVoucher(@RequestBody Voucher voucher){
+    public Result generateVoucher(@RequestBody IVoucher voucher){
         Result result = new Result();
         try{
             voucherService.saveVoucher(voucher);

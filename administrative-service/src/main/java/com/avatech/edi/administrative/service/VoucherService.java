@@ -21,9 +21,7 @@ public class VoucherService {
     @Autowired
     private B1JournalEntryService b1JournalEntryService;
 
-
-
-    public void saveVoucher(Voucher voucher){
+    public void saveVoucher(IVoucher voucher){
         B1Connection connection = b1Manager.getB1ConnInstance(voucher.getCompanyName());
         b1JournalEntryService.createJournalEntry(voucher,connection);
     }
