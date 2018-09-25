@@ -12,21 +12,15 @@
     <artifactId>administrative-service</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>com.avatech.edi</groupId>
-            <artifactId>administrative-common</artifactId>
-            <version>0.0.1</version>
-        </dependency>
-
-       <dependency>
-            <groupId>com.avatech.edi</groupId>
-            <artifactId>administrative-model</artifactId>
-            <version>0.0.1</version>
-       </dependency>
 
         <dependency>
             <groupId>com.avatech.edi</groupId>
             <artifactId>administrative-repository</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.avatech.edi</groupId>
+            <artifactId>administrative-repository-businessone</artifactId>
             <version>0.0.1</version>
         </dependency>
     </dependencies>

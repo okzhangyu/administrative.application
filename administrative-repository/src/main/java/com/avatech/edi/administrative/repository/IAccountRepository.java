@@ -1,6 +1,7 @@
 package com.avatech.edi.administrative.repository;
 
 import com.avatech.edi.administrative.model.bo.Account;
+import com.avatech.edi.administrative.model.bo.UniqueKey;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -8,4 +9,5 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface IAccountRepository extends CrudRepository<Account,String>{
 
+    Account findByKey(String key);
 }

@@ -1,24 +1,30 @@
 package com.avatech.edi.administrative.model.bo;
+import java.util.Date;
 import java.util.List;
 
 /**
  * Created by asus on 2018/9/7.
  */
 public interface IVoucher {
+
      String getOaNumber();
 
      void setOaNumber(String oaNumber);
 
-     String getDocDate();
+     Date getDocDate();
 
-     void setDocDate(String docDate);
+     void setDocDate(Date docDate);
 
      String getComments();
 
      void setComments(String comments);
 
-      List<VoucherItem> getVoucherItems();
+     String getCompanyName();
 
-      void setVoucherItems(List<VoucherItem> voucherItems);
+     void setCompanyName(String companyName);
+
+     List<VoucherItem> getVoucherItems();
+
+     void setVoucherItems(List<VoucherItem> voucherItems);
 
 }

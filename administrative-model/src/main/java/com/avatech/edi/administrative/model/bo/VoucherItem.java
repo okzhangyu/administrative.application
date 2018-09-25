@@ -1,11 +1,18 @@
 package com.avatech.edi.administrative.model.bo;
 
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * Created by asus on 2018/9/7.
  */
 public class VoucherItem implements IVoucherItem {
+
     private String oaNumber;
-    private Integer lineNumber;
     private String accountCode;
     private String accountName;
     private Double credit;
@@ -15,32 +22,20 @@ public class VoucherItem implements IVoucherItem {
     private String summary;
     private String project;
     private String cashFlowCode;
-    private String distributionRule;
     private String cardCode;
-    private Double vat;
     private String controlCode;
-    private String acctName;
-
+    private String shortName;
 
     @Override
-    public String getOaNumber() {
+    public String getOANumber() {
         return oaNumber;
     }
 
     @Override
-    public void setOaNumber(String oaNumber) {
+    public void setOANumber(String oaNumber) {
         this.oaNumber = oaNumber;
     }
 
-    @Override
-    public Integer getLineNumber() {
-        return lineNumber;
-    }
-
-    @Override
-    public void setLineNumber(Integer lineNumber) {
-        this.lineNumber = lineNumber;
-    }
 
     @Override
     public String getAccountCode() {
@@ -64,6 +59,8 @@ public class VoucherItem implements IVoucherItem {
 
     @Override
     public Double getCredit() {
+        if(credit == null)
+            return 0.0;
         return credit;
     }
 
@@ -74,6 +71,8 @@ public class VoucherItem implements IVoucherItem {
 
     @Override
     public Double getDebit() {
+        if(debit == null)
+            return 0.0;
         return debit;
     }
 
@@ -133,16 +132,6 @@ public class VoucherItem implements IVoucherItem {
     }
 
     @Override
-    public String getDistributionRule() {
-        return distributionRule;
-    }
-
-    @Override
-    public void setDistributionRule(String distributionRule) {
-        this.distributionRule = distributionRule;
-    }
-
-    @Override
     public String getCardCode() {
         return cardCode;
     }
@@ -150,16 +139,6 @@ public class VoucherItem implements IVoucherItem {
     @Override
     public void setCardCode(String cardCode) {
         this.cardCode = cardCode;
-    }
-
-    @Override
-    public Double getVat() {
-        return vat;
-    }
-
-    @Override
-    public void setVat(Double vat) {
-        this.vat = vat;
     }
 
     @Override
@@ -173,34 +152,31 @@ public class VoucherItem implements IVoucherItem {
     }
 
     @Override
-    public String getAcctName() {
-        return acctName;
+    public String getShortName() {
+        return shortName;
     }
 
     @Override
-    public void setAcctName(String acctName) {
-        this.acctName = acctName;
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
     }
 
-    public VoucherItem() {
-    }
-
-    public VoucherItem(String oaNumber, Integer lineNumber, String accountCode, String accountName, Double credit, Double debit, String ocrCode, String ocrCode2, String summary, String project, String cashFlowCode, String distributionRule, String cardCode, Double vat, String controlCode, String acctName) {
-        this.oaNumber = oaNumber;
-        this.lineNumber = lineNumber;
-        this.accountCode = accountCode;
-        this.accountName = accountName;
-        this.credit = credit;
-        this.debit = debit;
-        this.ocrCode = ocrCode;
-        this.ocrCode2 = ocrCode2;
-        this.summary = summary;
-        this.project = project;
-        this.cashFlowCode = cashFlowCode;
-        this.distributionRule = distributionRule;
-        this.cardCode = cardCode;
-        this.vat = vat;
-        this.controlCode = controlCode;
-        this.acctName = acctName;
+    @Override
+    public String toString() {
+        return "VoucherItem{" +
+                "oaNumber:'" + oaNumber + '\'' +
+                ", accountCode:'" + accountCode + '\'' +
+                ", accountName:'" + accountName + '\'' +
+                ", credit=" + credit +
+                ", debit=" + debit +
+                ", ocrCode:'" + ocrCode + '\'' +
+                ", ocrCode2:'" + ocrCode2 + '\'' +
+                ", summary:'" + summary + '\'' +
+                ", project:'" + project + '\'' +
+                ", cashFlowCode:'" + cashFlowCode + '\'' +
+                ", cardCode:'" + cardCode + '\'' +
+                ", controlCode:'" + controlCode + '\'' +
+                ", shortName:'" + shortName + '\'' +
+                '}';
     }
 }

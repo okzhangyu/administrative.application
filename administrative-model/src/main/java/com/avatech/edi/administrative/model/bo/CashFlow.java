@@ -1,7 +1,5 @@
 package com.avatech.edi.administrative.model.bo;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by asus on 2018/9/7.
@@ -9,46 +7,72 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="AVA_OA_VIEW_OCFW")
-public class CashFlow implements ICashFlow {
-    @Column(name="CashFlowCode")
+public class CashFlow implements ICashFlow{
+
+    @Id
+    @Column(name = "Uniquekey")
+    private String key;
+
+    @Column(name = "Companycode")
+    private String companyName;
+
+    @Column(name="Cashflowcode")
     private String cashFlowCode;
 
-    @Column(name="CashFlowName")
+    @Column(name="Cashflowname")
     private String cashFlowName;
 
     @Column(name="Active")
     private String active;
 
+    @Override
     public String getCashFlowCode() {
         return cashFlowCode;
     }
 
+    @Override
     public void setCashFlowCode(String cashFlowCode) {
         this.cashFlowCode = cashFlowCode;
     }
 
+    @Override
     public String getCashFlowName() {
         return cashFlowName;
     }
 
+    @Override
     public void setCashFlowName(String cashFlowName) {
         this.cashFlowName = cashFlowName;
     }
 
+    @Override
     public String getActive() {
         return active;
     }
 
+    @Override
     public void setActive(String active) {
         this.active = active;
     }
 
-    public CashFlow() {
+    @Override
+    public String getKey() {
+        return key;
     }
 
-    public CashFlow(String cashFlowCode, String cashFlowName, String active) {
-        this.cashFlowCode = cashFlowCode;
-        this.cashFlowName = cashFlowName;
-        this.active = active;
+    @Override
+    public void setKey(String key) {
+        this.key = key;
     }
+
+    @Override
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    @Override
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
 }

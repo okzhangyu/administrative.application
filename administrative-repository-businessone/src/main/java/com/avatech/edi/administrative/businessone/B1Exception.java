@@ -5,6 +5,15 @@ import com.avatech.common.edi.administrative.common.exception.BaseException;
 
 public class B1Exception extends BaseException {
 
+    private String code;
+
+    private String message;
+
+    public B1Exception(String code,String message){
+        super(code,message);
+        this.code = code;
+        this.message = message;
+    }
 
     public B1Exception() {super();}
 

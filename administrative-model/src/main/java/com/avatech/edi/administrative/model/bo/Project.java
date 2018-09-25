@@ -1,8 +1,6 @@
 package com.avatech.edi.administrative.model.bo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by asus on 2018/9/7.
@@ -13,45 +11,70 @@ import javax.persistence.Table;
 @Table(name="AVA_OA_VIEW_OPRJ")
 public class Project implements IProject {
 
-    @Column(name="ProjectCode")
+    @Id
+    @Column(name = "Uniquekey")
+    private String key;
+
+    @Column(name = "Companycode")
+    private String companyName;
+
+    @Column(name="Projectcode")
     private String projectCode;
 
-    @Column(name="ProjectName")
+    @Column(name="Projectame")
     private String projectName;
 
     @Column(name="Active")
     private String active;
 
+    @Override
     public String getProjectCode() {
         return projectCode;
     }
 
+    @Override
     public void setProjectCode(String projectCode) {
         this.projectCode = projectCode;
     }
 
+    @Override
     public String getProjectName() {
         return projectName;
     }
 
+    @Override
     public void setProjectName(String projectName) {
         this.projectName = projectName;
     }
 
+    @Override
     public String getActive() {
         return active;
     }
 
+    @Override
     public void setActive(String active) {
         this.active = active;
     }
 
-    public Project() {
+    @Override
+    public String getKey() {
+        return key;
     }
 
-    public Project(String projectCode, String projectName, String active) {
-        this.projectCode = projectCode;
-        this.projectName = projectName;
-        this.active = active;
+    @Override
+    public void setKey(String key) {
+        this.key = key;
     }
+
+    @Override
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    @Override
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
 }
