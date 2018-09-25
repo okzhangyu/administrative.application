@@ -8,13 +8,13 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="AVA_OA_VIEW_OPRC")
-public class CostCenter implements ICostCenter {
+public class CostCenter implements ICostCenter{
 
     @Id
-    @Column(name = "Key")
+    @Column(name = "Uniquekey")
     private String key;
 
-    @Column(name = "Companyname")
+    @Column(name = "Companycode")
     private String companyName;
 
     @Column(name="Prccode")
@@ -88,4 +88,5 @@ public class CostCenter implements ICostCenter {
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
+
 }

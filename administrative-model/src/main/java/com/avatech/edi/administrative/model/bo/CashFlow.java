@@ -7,13 +7,13 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="AVA_OA_VIEW_OCFW")
-public class CashFlow implements ICashFlow {
+public class CashFlow implements ICashFlow{
 
     @Id
-    @Column(name = "Key")
+    @Column(name = "Uniquekey")
     private String key;
 
-    @Column(name = "Companyname")
+    @Column(name = "Companycode")
     private String companyName;
 
     @Column(name="Cashflowcode")
@@ -74,4 +74,5 @@ public class CashFlow implements ICashFlow {
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
+
 }

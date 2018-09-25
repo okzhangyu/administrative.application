@@ -20,7 +20,7 @@ public class TaskRecord implements ITaskRecord {
     @Column(name="Objectcode")
     private String objectCode;
 
-    @Column(name="Companyname")
+    @Column(name="Companycode")
     private String companyName;
 
     @Column(name="Uniquekey")

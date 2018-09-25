@@ -9,5 +9,5 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface IAccountRepository extends CrudRepository<Account,String>{
 
-    Account findByAcctCodeAndCompanyName(String acctCode,String companyName);
+    Account findByKey(String key);
 }

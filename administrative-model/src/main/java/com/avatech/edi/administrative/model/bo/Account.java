@@ -11,10 +11,10 @@ import javax.persistence.*;
 public class Account implements IAccount {
 
     @Id
-    @Column(name = "Key")
+    @Column(name = "Uniquekey")
     private String key;
 
-    @Column(name = "Companyname")
+    @Column(name = "Companycode")
     private String companyName;
 
     @Column(name="Acctcode")
@@ -88,4 +88,5 @@ public class Account implements IAccount {
     public void setAcctLevel(String acctLevel) {
         this.acctLevel = acctLevel;
     }
+
 }

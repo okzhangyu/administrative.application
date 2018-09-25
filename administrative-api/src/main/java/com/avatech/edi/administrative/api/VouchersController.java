@@ -28,6 +28,7 @@ public class VouchersController {
 
     @RequestMapping(value = "voucher",method ={RequestMethod.POST})
     public @ResponseBody Result generateVoucher(@RequestBody Voucher voucher){
+        logger.info("接收凭单信息>>>>>>>>>{0}",voucher.toString());
         Result result = new Result();
         try{
             result = Result.ok(voucherService.saveVoucher(voucher));
@@ -36,6 +37,7 @@ public class VouchersController {
         }catch (Exception e){
             return Result.error("10001",e.getMessage());
         }
+        logger.info("凭单处理结果>>>>>>>>{0}",result.toString());
         return result;
     }
 

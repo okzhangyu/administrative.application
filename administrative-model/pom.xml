@@ -11,5 +11,11 @@
 
     <artifactId>administrative-model</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>com.avatech.edi</groupId>
+            <artifactId>administrative-common</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+    </dependencies>
 </project>

@@ -1,4 +1,4 @@
-package com.avatech.common.edi.administrative.common.Utils;
+package com.avatech.common.edi.administrative.common.utils;
 
 public class StringUtils {
 
