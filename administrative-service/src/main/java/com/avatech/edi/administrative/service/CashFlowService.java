@@ -19,7 +19,7 @@ public class CashFlowService {
     private final Logger logger = LoggerFactory.getLogger(ProjectService.class);
 
     @Autowired
-    private ICashFlowRepositoty projectRepository;
+    private ICashFlowRepositoty cashFlowRepositoty;
 
     @Autowired
     private TaskService taskService;
@@ -28,14 +28,18 @@ public class CashFlowService {
         List<TaskRecord> taskRecords = taskService.fetchTaskList(MasterDataType.CASHFLOW);
         if(taskRecords.size() == 0)
             return null;
+        return fetchCashFlowByTask(taskRecords);
+    }
+
+    public List<CashFlow> fetchCashFlowByTask(List<TaskRecord> taskRecords) {
         List<CashFlow> cashFlows = new ArrayList<>();
         CashFlow cashFlow;
-        for (TaskRecord task:taskRecords) {
+        for (TaskRecord task : taskRecords) {
             try {
-                cashFlow = projectRepository.findByKey(MasterData.getUniqueKey(task.getCompanyName(),task.getUniqueKey()));
+                cashFlow = cashFlowRepositoty.findByKey(MasterData.getUniqueKey(task.getCompanyName(), task.getUniqueKey()));
                 cashFlows.add(cashFlow);
-            }catch (Exception e){
-                logger.error("查找现金流错误："+e.getMessage());
+            } catch (Exception e) {
+                logger.error("查找现金流错误：" + e.getMessage());
             }
         }
         return cashFlows;

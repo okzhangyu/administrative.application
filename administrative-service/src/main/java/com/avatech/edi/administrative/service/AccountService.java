@@ -1,5 +1,7 @@
 package com.avatech.edi.administrative.service;
 
+import com.avatech.edi.administrative.config.ServiceException;
+import com.avatech.edi.administrative.data.OpType;
 import com.avatech.edi.administrative.model.bo.Account;
 import com.avatech.edi.administrative.model.bo.MasterData;
 import com.avatech.edi.administrative.model.bo.TaskRecord;
@@ -31,14 +33,30 @@ public class AccountService {
         List<TaskRecord> taskRecords = taskService.fetchTaskList(MasterDataType.ACCOUNT);
         if(taskRecords.size() == 0)
             return null;
+        return fetchAccountByTask(taskRecords);
+    }
+
+    public List<Account> fetchUnSyncWithOpTypeAccount(String opType){
+        List<TaskRecord> taskRecords = taskService.fetchTaskList(MasterDataType.ACCOUNT,opType);
+        if(taskRecords.size() == 0)
+            return null;
+        return fetchAccountByTask(taskRecords);
+    }
+
+    public Account fetchAccount(String companyName,String uniqueKey){
+        return  accountRepository.findByKey(MasterData.getUniqueKey(companyName,uniqueKey));
+    }
+
+
+    public List<Account> fetchAccountByTask(List<TaskRecord> taskRecords) {
         List<Account> accounts = new ArrayList<>();
         Account account;
-        for (TaskRecord task:taskRecords) {
+        for (TaskRecord task : taskRecords) {
             try {
-                account = accountRepository.findByKey(MasterData.getUniqueKey(task.getCompanyName(),task.getUniqueKey()));
+                account = accountRepository.findByKey(MasterData.getUniqueKey(task.getCompanyName(), task.getUniqueKey()));
                 accounts.add(account);
-            }catch (Exception e){
-                logger.error("查找科目错误："+e.getMessage());
+            } catch (Exception e) {
+                logger.error("查找科目错误：" + e.getMessage());
             }
         }
         return accounts;

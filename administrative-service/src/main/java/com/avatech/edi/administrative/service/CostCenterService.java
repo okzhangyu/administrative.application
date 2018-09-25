@@ -21,7 +21,7 @@ public class CostCenterService {
     private final Logger logger = LoggerFactory.getLogger(ProjectService.class);
 
     @Autowired
-    private ICostCenterRepository projectRepository;
+    private ICostCenterRepository costCenterRepository;
 
     @Autowired
     private TaskService taskService;
@@ -30,14 +30,18 @@ public class CostCenterService {
         List<TaskRecord> taskRecords = taskService.fetchTaskList(MasterDataType.CASHFLOW);
         if(taskRecords.size() == 0)
             return null;
+        return fetchCostCenterByTask(taskRecords);
+    }
+
+    public List<CostCenter> fetchCostCenterByTask(List<TaskRecord> taskRecords) {
         List<CostCenter> costCenters = new ArrayList<>();
         CostCenter costCenter;
-        for (TaskRecord task:taskRecords) {
+        for (TaskRecord task : taskRecords) {
             try {
-                costCenter = projectRepository.findByKey(MasterData.getUniqueKey(task.getCompanyName(),task.getUniqueKey()));
+                costCenter = costCenterRepository.findByKey(MasterData.getUniqueKey(task.getCompanyName(), task.getUniqueKey()));
                 costCenters.add(costCenter);
-            }catch (Exception e){
-                logger.error("查找成本中心错误："+e.getMessage());
+            } catch (Exception e) {
+                logger.error("查找成本中心错误：" + e.getMessage());
             }
         }
         return costCenters;

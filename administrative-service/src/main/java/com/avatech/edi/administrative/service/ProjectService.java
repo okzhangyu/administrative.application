@@ -34,14 +34,18 @@ public class ProjectService {
         List<TaskRecord> taskRecords = taskService.fetchTaskList(MasterDataType.PROJECT);
         if(taskRecords.size() == 0)
             return null;
+        return fetchProjectByTask(taskRecords);
+    }
+
+    public List<Project> fetchProjectByTask(List<TaskRecord> taskRecords) {
         List<Project> projects = new ArrayList<>();
         Project project;
-        for (TaskRecord task:taskRecords) {
+        for (TaskRecord task : taskRecords) {
             try {
-                project = projectRepository.findByKey(MasterData.getUniqueKey(task.getCompanyName(),task.getUniqueKey()));
+                project = projectRepository.findByKey(MasterData.getUniqueKey(task.getCompanyName(), task.getUniqueKey()));
                 projects.add(project);
-            }catch (Exception e){
-                logger.error("查找项目错误："+e.getMessage());
+            } catch (Exception e) {
+                logger.error("查找项目错误：" + e.getMessage());
             }
         }
         return projects;
