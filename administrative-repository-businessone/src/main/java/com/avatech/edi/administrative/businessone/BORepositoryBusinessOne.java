@@ -3,6 +3,7 @@ package com.avatech.edi.administrative.businessone;
 
 import com.avatech.edi.administrative.model.bo.B1Connection;
 import com.sap.smb.sbo.api.ICompany;
+import com.sap.smb.sbo.api.SBOCOMConstants;
 import com.sap.smb.sbo.api.SBOCOMUtil;
 import com.sap.smb.sbo.api.SBOErrorMessage;
 import org.slf4j.Logger;

@@ -77,4 +77,14 @@ public class Project implements IProject {
         this.companyName = companyName;
     }
 
+    @Override
+    public String toString() {
+        return "Project{" +
+                "key:'" + key + '\'' +
+                ", companyName:'" + companyName + '\'' +
+                ", projectCode:'" + projectCode + '\'' +
+                ", projectName:'" + projectName + '\'' +
+                ", active:'" + active + '\'' +
+                '}';
+    }
 }

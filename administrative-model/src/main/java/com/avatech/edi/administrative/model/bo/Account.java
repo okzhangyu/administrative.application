@@ -89,4 +89,15 @@ public class Account implements IAccount {
         this.acctLevel = acctLevel;
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+                "key:'" + key + '\'' +
+                ", companyName:'" + companyName + '\'' +
+                ", acctCode:'" + acctCode + '\'' +
+                ", acctName:'" + acctName + '\'' +
+                ", active:'" + active + '\'' +
+                ", acctLevel:'" + acctLevel + '\'' +
+                '}';
+    }
 }

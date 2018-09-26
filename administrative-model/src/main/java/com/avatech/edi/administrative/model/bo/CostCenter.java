@@ -89,4 +89,15 @@ public class CostCenter implements ICostCenter{
         this.companyName = companyName;
     }
 
+    @Override
+    public String toString() {
+        return "CostCenter{" +
+                "key:'" + key + '\'' +
+                ", companyName:'" + companyName + '\'' +
+                ", proCode:'" + proCode + '\'' +
+                ", proName:'" + proName + '\'' +
+                ", dimCode:" + dimCode +
+                ", active:'" + active + '\'' +
+                '}';
+    }
 }

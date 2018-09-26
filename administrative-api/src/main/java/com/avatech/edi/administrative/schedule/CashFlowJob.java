@@ -2,12 +2,10 @@ package com.avatech.edi.administrative.schedule;
 
 import com.avatech.edi.administrative.config.HttpRequest;
 import com.avatech.edi.administrative.data.OpType;
-import com.avatech.edi.administrative.model.bo.Account;
 import com.avatech.edi.administrative.model.bo.CashFlow;
 import com.avatech.edi.administrative.model.bo.TaskRecord;
 import com.avatech.edi.administrative.model.config.MasterDataType;
 import com.avatech.edi.administrative.model.dto.Response;
-import com.avatech.edi.administrative.service.AccountService;
 import com.avatech.edi.administrative.service.CashFlowService;
 import com.avatech.edi.administrative.service.TaskService;
 import org.slf4j.Logger;
@@ -42,16 +40,17 @@ public class CashFlowJob {
     private void processData(String opType) {
         try
         {
-            List<TaskRecord> taskRecords = taskService.fetchTaskList(MasterDataType.ACCOUNT, opType);
+            List<TaskRecord> taskRecords = taskService.fetchTaskList(MasterDataType.CASHFLOW, opType);
             if (taskRecords.size() == 0)
                 return;
             logger.info(">>>>>>>>>>>>>>获取未同步现金流主数据{" + taskRecords.size() + "}条");
             List<CashFlow> cashFlows = cashFlowService.fetchCashFlowByTask(taskRecords);
+            logger.info(">>>>>>>>>>>>>>同步现金流主数据:" + cashFlows.toString());
             RestTemplate template = new RestTemplate();
             ResponseEntity<Response> result = template.postForEntity(request.getRequestUrl(MasterDataType.CASHFLOW, opType), cashFlows, Response.class);
             if (result.hasBody()) {
                 Response res = result.getBody();
-                taskService.updateTask(taskRecords, res.getCode() == "0" ? true : false, res.getMessage());
+                taskService.updateTask(taskRecords, res.getCode().equals("0") ? true : false, res.getMessage());
                 logger.info(">>>>>>>>>>>>>>同步现金流主数据结果：" + res.toString());
             } else {
                 taskService.updateTask(taskRecords,false,result.getBody().toString());
