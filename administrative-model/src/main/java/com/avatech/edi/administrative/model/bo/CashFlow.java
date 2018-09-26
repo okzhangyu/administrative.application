@@ -75,4 +75,14 @@ public class CashFlow implements ICashFlow{
         this.companyName = companyName;
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+                "key:'" + key + '\'' +
+                ", companyName:'" + companyName + '\'' +
+                ", cashFlowCode:'" + cashFlowCode + '\'' +
+                ", cashFlowName:'" + cashFlowName + '\'' +
+                ", active:'" + active + '\'' +
+                '}';
+    }
 }
