@@ -1,0 +1,167 @@
+CREATE VIEW "AVA_OA_VIEW_OACT" ( "UNIQUEKEY",
+	 "COMPANYCODE",
+	 "ACCTCODE",
+	 "ACCTNAME",
+	 "ACTIVE",
+	 "ACCTLEVEL" ) AS (((select
+	 concat('A01_',
+	 "AcctCode"),
+	 'A01',
+	 "AcctCode",
+	 "AcctName",
+	 'Y',
+	 "Levels"
+	 from "SBO_JS_KFCS01".OACT)
+		UNION ALL (select
+	  concat('A02_',
+	 "AcctCode"),
+	 'A02',
+	 "AcctCode",
+	 "AcctName",
+	 'Y',
+	 "Levels"
+	 from "SBO_JS_KFCS02".OACT))
+	 UNION ALL (select
+	 concat('A03_',
+	 "AcctCode"),
+	 'A03',
+	 "AcctCode",
+	 "AcctName",
+	 'Y',
+	 "Levels"
+		from "SBO_JS_KFCS03".OACT)) WITH READ ONLY
+
+
+------------------------------------------------------------------------------------------
+CREATE VIEW "AVA_OA_VIEW_OCFW" ( "UNIQUEKEY",
+	 "COMPANYCODE",
+	 "CASHFLOWCODE",
+	 "CASHFLOWNAME",
+	 "ACTIVE" ) AS (((select
+	 concat('A01_',
+	"CFWId"),
+	 'A01',
+	 "CFWId",
+	 "CFWName",
+	 'Y'
+			from "SBO_JS_KFCS01".OCFW)
+		UNION (select
+	 concat('A02_',
+	"CFWId"),
+	 'A02',
+	 "CFWId",
+	 "CFWName",
+	 'Y'
+			from "SBO_JS_KFCS02".OCFW))
+	UNION (select
+	 concat('A03_',
+	"CFWId"),
+	 'A03',
+	 "CFWId",
+	 "CFWName",
+	 'Y'
+		from "SBO_JS_KFCS03".OCFW)) WITH READ ONLY
+
+------------------------------------------------------------------------------------------
+
+CREATE VIEW "AVA_OA_VIEW_OPRC" ( "UNIQUEKEY",
+	 "COMPANYCODE",
+	 "PRCCODE",
+	 "PRCNAME",
+	 "DIMCODE",
+	 "ACTIVE" ) AS (((select
+	 concat('A01_',
+	"PrcCode"),
+	 'A01',
+	 "PrcCode",
+	 "PrcName",
+	 "DimCode",
+	 "Active"
+			from "SBO_JS_KFCS01".OPRC)
+		UNION (select
+	 concat('A02_',
+	"PrcCode"),
+	 'A02',
+	 "PrcCode",
+	 "PrcName",
+	 "DimCode",
+	 "Active"
+			from "SBO_JS_KFCS02".OPRC))
+	UNION (select
+	 concat('A03_',
+	"PrcCode"),
+	 'A03',
+	 "PrcCode",
+	 "PrcName",
+	 "DimCode",
+	 "Active"
+		from "SBO_JS_KFCS03".OPRC)) WITH READ ONLY
+
+------------------------------------------------------------------------------------------
+
+CREATE VIEW "OA_MID_BASE_TEST"."AVA_OA_VIEW_OPRJ" ( "UNIQUEKEY",
+	 "COMPANYCODE",
+	 "PROJECTCODE",
+	 "PROJECTNAME",
+	 "ACTIVE" ) AS (((select
+	 concat('A01_',
+	"PrjCode"),
+	 'A01',
+	 "PrjCode",
+	 "PrjName",
+	 "Active"
+			from "SBO_JS_KFCS01".OPRJ)
+		UNION (select
+	 concat('A02_',
+	"PrjCode"),
+	 'A02',
+	 "PrjCode",
+	 "PrjName",
+	 "Active"
+			from "SBO_JS_KFCS02".OPRJ))
+	UNION (select
+	 concat('A03_',
+	"PrjCode"),
+	 'A03',
+	 "PrjCode",
+	 "PrjName",
+	 "Active"
+		from "SBO_JS_KFCS03".OPRJ)) WITH READ ONLY
+
+
+------------------------------------------------------------------------------------------
+
+
+CREATE VIEW "OA_MID_BASE_TEST"."AVA_OA_COMPANY" ( "COMPANYCODE",
+	 "COMPANYNAME" ) AS ((((((((select
+	 '0001',
+	 '集团总部'
+								from dummy)
+							UNION (select
+	 '05',
+	 '北京康吉森交通技术有限公司'
+								from dummy))
+						UNION (select
+	 '06',
+	 '北京康吉森油气工程技术有限公司'
+							from dummy))
+					UNION (select
+	 '03',
+	 '北京康吉森自动化设备技术有限责任公司'
+						from dummy))
+				UNION (select
+	 '07',
+	 '北京康吉森技术有限公司'
+					from dummy))
+			UNION (select
+	 '001',
+	 '吴忠基建项目'
+				from dummy))
+		UNION (select
+	 '08',
+	 '北京康吉森节能环保技术有限公司'
+			from dummy))
+	UNION (select
+	 '09',
+	 '南京华士电子科技有限公司'
+		from dummy)) WITH READ ONLY
