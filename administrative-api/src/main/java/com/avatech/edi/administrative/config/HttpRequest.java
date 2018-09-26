@@ -26,9 +26,11 @@ public class HttpRequest {
     public String getRequestUrl(String objCode, String opType){
         String url = getResource(objCode,opType);
         // get token
+        long time = DateUtil.getLongTime(LocalDateTime.now().plusMinutes(15));
+        long timeq1 = DateUtil.getLongTime(LocalDateTime.now());
         UserToken userToken = userTokenService.fetchUserToken();
         if(userToken == null || (userToken != null && userToken.getExpired() <= DateUtil.getLongTime())){
-            RestTemplate template = new RestTemplate();
+                RestTemplate template = new RestTemplate();
             String token = template.getForObject(TOKEN_URL,String.class);
             userToken = new UserToken();
             userToken.setExpired(DateUtil.getLongTime(LocalDateTime.now().plusMinutes(15)));

@@ -5,6 +5,7 @@ import com.avatech.edi.administrative.repository.ITaskRepository;
 import javafx.concurrent.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,17 @@ public class TaskService {
 
 
     public void updateTask(List<TaskRecord> taskRecords,boolean isSync,String message){
-        taskRepository.updateTask(getTaskIds(taskRecords),isSync == true?"Y":"N",message);
+        String isSyncValue = null;
+        if(isSync){
+            isSyncValue = "Y" ;
+        }else {
+            isSyncValue = "E";
+        }
+        for (TaskRecord task:taskRecords) {
+            task.setIsSync(isSyncValue);
+            task.setSyncMessage(message);
+        }
+        taskRepository.saveAll(taskRecords);
     }
 
     private List<Integer> getTaskIds(List<TaskRecord> taskRecords){

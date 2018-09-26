@@ -10,16 +10,16 @@ public class MasterDataType {
     /**
      * 项目
      */
-    public static final String PROJECT = "2";
+    public static final String PROJECT = "63";
 
     /**
      * 成本中心
      */
-    public static final String COSTCENTER = "3";
+    public static final String COSTCENTER = "61";
 
     /**
      * 现金流
      */
-    public static final String CASHFLOW = "4";
+    public static final String CASHFLOW = "242";
 
 }
