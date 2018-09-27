@@ -18,7 +18,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-@Component
+
 public class CashFlowJob {
     private Logger logger = LoggerFactory.getLogger(CashFlowJob.class);
 

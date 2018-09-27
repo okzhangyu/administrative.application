@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * 项目
  */
-@Component
+
 public class ProjectJob {
     private Logger logger = LoggerFactory.getLogger(CostCenterJob.class);
 
