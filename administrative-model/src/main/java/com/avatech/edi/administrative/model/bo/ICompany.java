@@ -17,4 +17,12 @@ public interface ICompany {
     String getPath();
 
     void setPath(String path);
+
+    String getDefLevelId();
+
+    void setDefLevelId(String defLevelId);
+
+    String getDefPositionId();
+
+    void setDefPositionId(String defPositionId);
 }

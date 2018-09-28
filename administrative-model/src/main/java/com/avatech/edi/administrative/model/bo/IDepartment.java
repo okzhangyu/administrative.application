@@ -20,9 +20,9 @@ public interface IDepartment {
 
     void setDescription(String desc);
 
-    String getEnabled();
+    Boolean getEnabled();
 
-    void setEnabled(String enabled);
+    void setEnabled(Boolean enabled);
 
     String getSuperior();
 

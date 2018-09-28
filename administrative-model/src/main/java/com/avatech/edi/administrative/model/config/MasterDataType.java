@@ -37,4 +37,13 @@ public class MasterDataType {
      */
     public static final String EMPLOYEE = "171";
 
+    /**
+     * 岗位
+     */
+    public static final String POSITION = "A01";
+
+    /**
+     * 级别
+     */
+    public static final String LEVEL = "A02";
 }

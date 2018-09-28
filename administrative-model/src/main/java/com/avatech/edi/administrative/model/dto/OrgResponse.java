@@ -1,5 +1,9 @@
 package com.avatech.edi.administrative.model.dto;
 
+import com.avatech.edi.administrative.model.config.ErrorMsgDeserializer;
+import com.avatech.edi.administrative.model.config.ListDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.util.List;
 
 public class OrgResponse {
@@ -22,6 +26,7 @@ public class OrgResponse {
         return errorMsgs;
     }
 
+    @JsonDeserialize(using = ListDeserializer.class,as = List.class,contentAs = ErrorMsgs.class)
     public void setErrorMsgs(List<ErrorMsgs> errorMsgs) {
         this.errorMsgs = errorMsgs;
     }
@@ -30,6 +35,7 @@ public class OrgResponse {
         return successMsgs;
     }
 
+    @JsonDeserialize(using = ListDeserializer.class,as = List.class,contentAs = SuccessMsgs.class)
     public void setSuccessMsgs(List<SuccessMsgs> successMsgs) {
         this.successMsgs = successMsgs;
     }

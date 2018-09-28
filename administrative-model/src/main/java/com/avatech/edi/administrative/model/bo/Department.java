@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "AVA_OA_OUDP")
+@Table(name = "AVA_OA_VIEW_OUDP")
 public class Department implements IDepartment {
 
 
@@ -26,7 +26,7 @@ public class Department implements IDepartment {
     private String description;
 
     @Column(name = "Enabled")
-    private String enabled;
+    private Boolean enabled;
 
     @Column(name = "Superior")
     private String superior;
@@ -101,12 +101,12 @@ public class Department implements IDepartment {
     }
 
     @Override
-    public String getEnabled() {
+    public Boolean getEnabled() {
         return enabled;
     }
 
     @Override
-    public void setEnabled(String enabled) {
+    public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 

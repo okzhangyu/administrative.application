@@ -22,6 +22,13 @@ public class Company implements ICompany {
     @Column(name = "Path")
     private String path;
 
+    @Column(name = "Deflevelid")
+    private String defLevelId;
+
+    @Column(name = "Defpositionid")
+    private String defPositionId;
+
+
     @Override
     public String getOrgAccountId() {
         return orgAccountId;
@@ -60,5 +67,25 @@ public class Company implements ICompany {
     @Override
     public void setPath(String path) {
         this.path = path;
+    }
+
+    @Override
+    public String getDefLevelId() {
+        return defLevelId;
+    }
+
+    @Override
+    public void setDefLevelId(String defLevelId) {
+        this.defLevelId = defLevelId;
+    }
+
+    @Override
+    public String getDefPositionId() {
+        return defPositionId;
+    }
+
+    @Override
+    public void setDefPositionId(String defPositionId) {
+        this.defPositionId = defPositionId;
     }
 }

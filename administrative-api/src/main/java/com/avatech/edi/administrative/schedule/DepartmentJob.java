@@ -11,6 +11,7 @@ import com.avatech.edi.administrative.model.dto.Response;
 import com.avatech.edi.administrative.service.DepartmentService;
 import com.avatech.edi.administrative.service.TaskService;
 import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,10 +58,8 @@ public class DepartmentJob {
             for (Department department:departments) {
                 ResponseEntity<String> result = template.postForEntity(request.getRequestUrl(MasterDataType.DEPARTMENT, opType), department, String.class);
                 if (result.hasBody()) {
-                    //OrgResponse res = result.getBody();
-                    JavaType javaType = getCollectionType(ArrayList.class, Company.class);
-                    OrgResponse res = (OrgResponse) mapper.readValue(result.getBody(), javaType);
-                    taskService.updateTask(taskRecords, res.getSuccess(), res.getSuccess()?res.getSuccessMsgs().get(0).getCode():res.getErrorMsgs().get(0).getCode());
+                    OrgResponse res = (OrgResponse) mapper.readValue(result.getBody(), OrgResponse.class);
+                    taskService.updateTask(taskRecords, res.getSuccess(), res.getSuccess()?"Successful":"Failed");
                     logger.info(">>>>>>>>>>>>>>同步部门主数据结果：" + result.toString());
                 } else {
                     taskService.updateTask(taskRecords, false, result.getBody().toString());
@@ -73,8 +72,6 @@ public class DepartmentJob {
         }
     }
 
-    public JavaType getCollectionType(Class<?> collectionClass, Class<?>... elementClasses) {
-        return mapper.getTypeFactory().constructParametricType(collectionClass, elementClasses);
-    }
+
 }
 

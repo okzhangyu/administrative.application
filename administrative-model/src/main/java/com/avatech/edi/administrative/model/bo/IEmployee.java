@@ -20,11 +20,35 @@ public interface IEmployee {
 
     void setOrgDepartmentId(String orgDepartmentId);
 
-    boolean isEnabled();
+    String getLoginName();
 
-    void setEnabled(boolean enabled);
+    void setLoginName(String loginName);
+
+    String getPassword();
+
+    void setPassword(String password);
 
     Integer getGender();
 
     void setGender(Integer gender);
+
+    String getOrgLevelId();
+
+    void setOrgLevelId(String orgLevelId);
+
+    String getOrgPostId();
+
+    void setOrgPostId(String orgPostId);
+
+    String getTelNumber();
+
+    void setTelNumber(String telNumber);
+
+    String getEmailAddress();
+
+    void setEmailAddress(String emailAddress);
+
+    String getDepartCode();
+
+    void setDepartCode(String departCode);
 }
