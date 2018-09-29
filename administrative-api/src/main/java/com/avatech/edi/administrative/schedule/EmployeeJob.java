@@ -2,7 +2,6 @@ package com.avatech.edi.administrative.schedule;
 
 import com.avatech.edi.administrative.config.HttpRequest;
 import com.avatech.edi.administrative.data.OpType;
-import com.avatech.edi.administrative.model.bo.Department;
 import com.avatech.edi.administrative.model.bo.Employee;
 import com.avatech.edi.administrative.model.bo.TaskRecord;
 import com.avatech.edi.administrative.model.config.MasterDataType;
@@ -57,7 +56,7 @@ public class EmployeeJob {
             for (Employee employee:employees) {
                 try{
                     // get department id by department code
-                    ResponseEntity<String> resDept = template.getForEntity(request.getQueryUrl(MasterDataType.DEPARTMENT, employee.getDepartCode()), String.class);
+                    ResponseEntity<String> resDept = template.getForEntity(request.getOrgUrl(MasterDataType.DEPARTMENT, employee.getDepartCode()), String.class);
                     if(resDept.hasBody()){
                         List<DefaultValue> defaultValues = mapper.readValue(resDept.getBody(), new TypeReference<List<DefaultValue>>() {});
                         if(defaultValues.size() == 0) {

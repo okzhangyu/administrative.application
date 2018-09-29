@@ -6,12 +6,26 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 @Table(name = "AVA_OA_VIEW_OUDP")
 public class Department implements IDepartment {
 
+    public static Map createUpdateMap(Department department){
+        Map idMap = new HashMap();
+        idMap.put("field","code");
 
+        Map map = new HashMap(){
+            {
+                put("id", idMap);
+                put("code", department.getCode());
+                put("name", department.getName());
+            }
+        };
+        return map;
+    }
     @Id
     @Column(name = "Code")
     private String code;

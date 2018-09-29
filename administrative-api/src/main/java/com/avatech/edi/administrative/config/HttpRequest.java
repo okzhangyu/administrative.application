@@ -16,7 +16,7 @@ public class HttpRequest {
     private final String BASE_URL = "http://oatest.chinaautomationgroup.com/seeyon/rest/";
     private final String TOKEN_URL = "http://oatest.chinaautomationgroup.com/seeyon/rest/token/rest/12345abc!";
 
-    private final String DEPARTMENT_URL = "http://oatest.chinaautomationgroup.com/seeyon/rest/orgDepartment/code/";
+    private final String DEPARTMENT_INFO_URL = "http://oatest.chinaautomationgroup.com/seeyon/rest/orgDepartment/code/";
     private final String POSITION_URL = "http://oatest.chinaautomationgroup.com/seeyon/rest/orgPosts/";
     private final String LEVEL_URL = "http://oatest.chinaautomationgroup.com/seeyon/rest/orgLevels/";
 
@@ -31,24 +31,23 @@ public class HttpRequest {
         return resource + "?token=" + getToken();
     }
 
-    public String getQueryUrl(String objCode,String value){
-        String resource = getQueryResource(objCode,value);
+    public String getOrgUrl(String objCode, String value){
+        String resource = getOrgResource(objCode,value);
         return resource + "?token=" + getToken();
     }
 
-    private String getQueryResource(String objCode,String value){
+    private String getOrgResource(String objCode, String value){
         switch (objCode) {
             case MasterDataType.POSITION:
                 return POSITION_URL + value;
             case MasterDataType.LEVEL:
                 return LEVEL_URL + value;
             case MasterDataType.DEPARTMENT:
-                return DEPARTMENT_URL + value;
+                return DEPARTMENT_INFO_URL + value;
             default:
                 throw new ServiceException("无效的主数据类型");
         }
     }
-
 
     private String getResource(String objCode, String opType) {
         switch (opType) {
@@ -78,6 +77,8 @@ public class HttpRequest {
                         return BASE_URL + "sapvoucher/changecostcenter";
                     case MasterDataType.PROJECT:
                         return BASE_URL + "sapvoucher/changeproject";
+                    case MasterDataType.DEPARTMENT:
+                        return BASE_URL + "orgDepartment";
                     case MasterDataType.CASHFLOW:
                         return BASE_URL + "sapvoucher/changecashstream";
                     default:

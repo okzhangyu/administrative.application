@@ -55,8 +55,15 @@ public class DepartmentJob {
             List<Department> departments = departmentService.fetchDepartments(taskRecords);
             logger.info(">>>>>>>>>>>>>>同步部门主数据:" + departments.toString());
             RestTemplate template = new RestTemplate();
+            ResponseEntity<String> result = null;
             for (Department department:departments) {
-                ResponseEntity<String> result = template.postForEntity(request.getRequestUrl(MasterDataType.DEPARTMENT, opType), department, String.class);
+                if(OpType.ADD.equals(opType)){
+                    result = template.postForEntity(request.getRequestUrl(MasterDataType.DEPARTMENT, opType), department, String.class);
+                }else if(OpType.UPDATE.equals(opType)){
+                    //result = template.put(request.getRequestUrl(MasterDataType.DEPARTMENT, opType), Department.createUpdateMap(department));
+                }else if(OpType.DELETE.equals(opType)){
+
+                }
                 if (result.hasBody()) {
                     OrgResponse res = (OrgResponse) mapper.readValue(result.getBody(), OrgResponse.class);
                     taskService.updateTask(taskRecords, res.getSuccess(), res.getSuccess()?"Successful":"Failed");
