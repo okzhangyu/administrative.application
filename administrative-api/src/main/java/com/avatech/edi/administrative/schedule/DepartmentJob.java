@@ -62,7 +62,6 @@ public class DepartmentJob {
                 }else if(OpType.UPDATE.equals(opType)){
                     //result = template.put(request.getRequestUrl(MasterDataType.DEPARTMENT, opType), Department.createUpdateMap(department));
                 }else if(OpType.DELETE.equals(opType)){
-
                 }
                 if (result.hasBody()) {
                     OrgResponse res = (OrgResponse) mapper.readValue(result.getBody(), OrgResponse.class);
