@@ -22,4 +22,28 @@ public class MasterDataType {
      */
     public static final String CASHFLOW = "242";
 
+    /**
+     * 公司
+     */
+    public static final String COMPANY = "0";
+
+    /**
+     * 部门
+     */
+    public static final String DEPARTMENT = "119";
+
+    /**
+     * 员工
+     */
+    public static final String EMPLOYEE = "171";
+
+    /**
+     * 岗位
+     */
+    public static final String POSITION = "A01";
+
+    /**
+     * 级别
+     */
+    public static final String LEVEL = "A02";
 }

@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * 成本中心
  */
-@Component
+
 public class CostCenterJob {
 
     private Logger logger = LoggerFactory.getLogger(CostCenterJob.class);
@@ -42,7 +42,6 @@ public class CostCenterJob {
     }
 
     private void processData(String opType) {
-
         try {
             List<TaskRecord> taskRecords = taskService.fetchTaskList(MasterDataType.COSTCENTER, opType);
             if (taskRecords.size() == 0)
