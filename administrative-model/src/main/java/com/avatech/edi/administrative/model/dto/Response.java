@@ -1,10 +1,22 @@
 package com.avatech.edi.administrative.model.dto;
 
+import java.util.List;
+
 public class Response {
 
     private String code;
 
     private String message;
+
+    private List<ResponseRow> rows;
+
+    public List<ResponseRow> getRows() {
+        return rows;
+    }
+
+    public void setRows(List<ResponseRow> rows) {
+        this.rows = rows;
+    }
 
     public String getCode() {
         return code;
@@ -29,4 +41,5 @@ public class Response {
                 ", message:'" + message + '\'' +
                 '}';
     }
+
 }

@@ -1,5 +1,0 @@
-com\avatech\edi\administrative\businessone\B1Exception.class
-com\avatech\edi\administrative\businessone\config\B1Data.class
-com\avatech\edi\administrative\businessone\journal\B1JournalEntryService.class
-com\avatech\edi\administrative\businessone\journal\JournalEntryServiceImp.class
-com\avatech\edi\administrative\businessone\BORepositoryBusinessOne.class

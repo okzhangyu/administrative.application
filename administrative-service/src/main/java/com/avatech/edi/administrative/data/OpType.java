@@ -5,4 +5,8 @@ public class OpType {
     public static final String UPDATE = "U";
 
     public static final String ADD = "A";
+
+    public static final String FETCH = "F";
+
+    public static final String DELETE = "D";
 }
