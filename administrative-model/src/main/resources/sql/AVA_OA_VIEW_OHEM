@@ -1,0 +1,32 @@
+CREATE VIEW "OA_MID_BASE_TEST"."AVA_OA_VIEW_OHEM" ( "ORGID",
+	 "ORGLEVELID",
+	 "ORGPOSTID",
+	 "DEPTID",
+	 "DEPTCODE",
+	 "CODE",
+	 "NAME",
+	 "GENDER",
+	 "LOGINNAME",
+	 "PASSWORD",
+	 "TELNUMBER",
+	 "EMAILADDRESS" ) AS select
+	 '-8284861508853742177',
+	 '1802028214812954145',
+	 '5312674834865537510',
+	 '',
+	 concat('0001_',
+	 "dept"),
+	 concat('0001_',
+	 "empID"),
+	 concat("lastName",
+	 "firstName") ,
+	 case "sex" when 'M'
+then 0 when 'F'
+then 1
+else -1
+end ,
+	 "empID",
+	 "empID",
+	 "mobile",
+	 "email"
+from "SBO_JS_KFCS01".ohem
