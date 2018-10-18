@@ -20,6 +20,10 @@ import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+<<<<<<< HEAD
+
+=======
+>>>>>>> edi/master
 @Component
 public class CompanyJob {
 
@@ -65,7 +69,6 @@ public class CompanyJob {
         } catch (Exception e) {
             logger.error("公司信息获取异常：" + e);
         }
-
     }
 
     public  JavaType getCollectionType(Class<?> collectionClass, Class<?>... elementClasses) {

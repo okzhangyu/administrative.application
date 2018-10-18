@@ -51,7 +51,7 @@ public class JournalEntryServiceImp implements B1JournalEntryService{
                     journalEntries.getLines().setProjectCode(item.getProject());
                 }
                 if(!StringUtils.isEmpty(item.getCashFlowCode())){
-                    //journalEntries.getLines().c
+                    journalEntries.getLines().getPrimaryFormItems().setCashFlowLineItemID(Integer.valueOf(item.getCashFlowCode()));
                 }
                 if(item.getCredit() > 0)
                     journalEntries.getLines().setCredit(item.getCredit());
