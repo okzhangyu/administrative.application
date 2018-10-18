@@ -17,6 +17,8 @@ import java.util.Date;
 public class JournalEntryServiceImp implements B1JournalEntryService{
 
     private Logger logger = LoggerFactory.getLogger(JournalEntryServiceImp.class);
+    private final static String CASHFLOW = "U_YLY";
+    private final static String OANUMBER = "U_OANumber";
     @Override
     public String createJournalEntry(IVoucher voucher, B1Connection connection){
         BORepositoryBusinessOne boRepositoryBusinessOne = null;
@@ -25,15 +27,14 @@ public class JournalEntryServiceImp implements B1JournalEntryService{
             //get company info
             boRepositoryBusinessOne = BORepositoryBusinessOne.getInstance(connection);
             company = boRepositoryBusinessOne.getCompany();
-
             IJournalEntries journalEntries = SBOCOMUtil.newJournalEntries(company);
-
             if(voucher.getDocDate() == null)
                 throw new B1Exception("过账日期[DocDate]为空");
             journalEntries.setReferenceDate(voucher.getDocDate());
             journalEntries.setDueDate(new Date());
             journalEntries.setTaxDate(new Date());
             journalEntries.setMemo(voucher.getComments());
+            journalEntries.getUserFields().getFields().item(OANUMBER).setValue(voucher.getOaNumber());
 
             for (IVoucherItem item:voucher.getVoucherItems()) {
                 if(StringUtils.isEmpty(item.getAccountCode()))
@@ -51,7 +52,9 @@ public class JournalEntryServiceImp implements B1JournalEntryService{
                     journalEntries.getLines().setProjectCode(item.getProject());
                 }
                 if(!StringUtils.isEmpty(item.getCashFlowCode())){
-                    journalEntries.getLines().getPrimaryFormItems().setCashFlowLineItemID(Integer.valueOf(item.getCashFlowCode()));
+                    //journalEntries.getLines().getPrimaryFormItems().setCashFlowLineItemID(Integer.valueOf(item.getCashFlowCode()));
+                    journalEntries.getLines().getUserFields().getFields().item(CASHFLOW).setValue(item.getCashFlowCode());
+
                 }
                 if(item.getCredit() > 0)
                     journalEntries.getLines().setCredit(item.getCredit());
