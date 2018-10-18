@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class CompanyJob {
 
     private final Logger logger = LoggerFactory.getLogger(CompanyJob.class);
@@ -66,7 +67,6 @@ public class CompanyJob {
         } catch (Exception e) {
             logger.error("公司信息获取异常：" + e);
         }
-
     }
 
     public  JavaType getCollectionType(Class<?> collectionClass, Class<?>... elementClasses) {
