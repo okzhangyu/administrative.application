@@ -43,7 +43,8 @@ public class ProjectService {
         for (TaskRecord task : taskRecords) {
             try {
                 project = projectRepository.findByKey(MasterData.getUniqueKey(task.getCompanyName(), task.getUniqueKey()));
-                projects.add(project);
+                if(project!=null)
+                    projects.add(project);
             } catch (Exception e) {
                 logger.error("查找项目错误：" + e.getMessage());
             }

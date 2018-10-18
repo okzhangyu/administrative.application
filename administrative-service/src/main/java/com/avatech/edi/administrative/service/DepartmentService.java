@@ -28,4 +28,8 @@ public class DepartmentService {
         }
         return departments;
     }
+
+    public Department fetchDepartment(TaskRecord record){
+        return departmentRepository.findByCode(MasterData.getUniqueKey(record.getCompanyName(), record.getUniqueKey()));
+    }
 }

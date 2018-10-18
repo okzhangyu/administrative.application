@@ -18,7 +18,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-
+@Component
 public class CashFlowJob {
     private Logger logger = LoggerFactory.getLogger(CashFlowJob.class);
 
@@ -47,10 +47,11 @@ public class CashFlowJob {
             List<CashFlow> cashFlows = cashFlowService.fetchCashFlowByTask(taskRecords);
             logger.info(">>>>>>>>>>>>>>同步现金流主数据:" + cashFlows.toString());
             RestTemplate template = new RestTemplate();
+            ResponseEntity<String> rt = template.postForEntity(request.getRequestUrl(MasterDataType.CASHFLOW, opType), cashFlows, String.class);
             ResponseEntity<Response> result = template.postForEntity(request.getRequestUrl(MasterDataType.CASHFLOW, opType), cashFlows, Response.class);
             if (result.hasBody()) {
                 Response res = result.getBody();
-                taskService.updateTask(taskRecords, res.getCode().equals("0") ? true : false, res.getMessage());
+                taskService.updateTask(TaskRecord.getTaskResult(taskRecords,res));
                 logger.info(">>>>>>>>>>>>>>同步现金流主数据结果：" + res.toString());
             } else {
                 taskService.updateTask(taskRecords,false,result.getBody().toString());

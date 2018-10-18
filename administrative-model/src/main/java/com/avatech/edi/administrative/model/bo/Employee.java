@@ -17,7 +17,6 @@ public class Employee implements IEmployee {
                 put("orgAccountId", employee.getOrgAccountId());
                 put("code", employee.getCode());//编号
                 put("name", employee.getName());//姓名
-                // put("sortId", 1);//排序号  V5.6最新版本后可以不用录入此参数
                 put("orgDepartmentId", employee.getOrgDepartmentId());//部门ID
                 put("telNumber", employee.getTelNumber());//移动电话
                 put("officeNum", "");//办公电话
@@ -31,6 +30,8 @@ public class Employee implements IEmployee {
         };
         return empMap;
     }
+
+
 
     @Id
     @Column(name = "Code")

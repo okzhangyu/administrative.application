@@ -27,5 +27,9 @@ public class EmployeeService {
                 employees.add(employee);
         }
         return employees;
+
+    }
+    public Employee fetchEmployee(TaskRecord record){
+        return employeeRepository.findByCode(MasterData.getUniqueKey(record.getCompanyName(),record.getUniqueKey()));
     }
 }

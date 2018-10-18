@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * 成本中心
  */
-
+@Component
 public class CostCenterJob {
 
     private Logger logger = LoggerFactory.getLogger(CostCenterJob.class);
@@ -53,7 +53,7 @@ public class CostCenterJob {
             ResponseEntity<Response> result = template.postForEntity(request.getRequestUrl(MasterDataType.COSTCENTER, opType), costCenters, Response.class);
             if (result.hasBody()) {
                 Response res = result.getBody();
-                taskService.updateTask(taskRecords, res.getCode().equals("0") ? true : false, res.getMessage());
+                taskService.updateTask(TaskRecord.getTaskResult(taskRecords,res));
                 logger.info(">>>>>>>>>>>>>>同步成本中心主数据结果：" + res.toString());
             } else {
                 taskService.updateTask(taskRecords, false, result.getBody().toString());

@@ -5,7 +5,6 @@ import com.avatech.edi.administrative.data.OpType;
 import com.avatech.edi.administrative.model.bo.Company;
 import com.avatech.edi.administrative.model.config.MasterDataType;
 import com.avatech.edi.administrative.model.dto.DefaultValue;
-import com.avatech.edi.administrative.model.dto.Response;
 import com.avatech.edi.administrative.service.CompanyService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
@@ -21,7 +20,10 @@ import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+<<<<<<< HEAD
 
+=======
+>>>>>>> edi/master
 @Component
 public class CompanyJob {
 
@@ -49,14 +51,14 @@ public class CompanyJob {
             companyService.saveCompany(companies);
 
             for (Company company :companies) {
-                ResponseEntity<String> rstPosition = template.getForEntity(request.getQueryUrl(MasterDataType.POSITION, company.getOrgAccountId()), String.class);
+                ResponseEntity<String> rstPosition = template.getForEntity(request.getOrgUrl(MasterDataType.POSITION, company.getOrgAccountId()), String.class);
                 if(rstPosition.hasBody()){
                     List<DefaultValue> defaultValues = mapper.readValue(rstPosition.getBody(), new TypeReference<List<DefaultValue>>() {});
                     if(defaultValues.size() > 0)
                         company.setDefPositionId(defaultValues.get(0).getId());
                 }
 
-                ResponseEntity<String> rstLevel = template.getForEntity(request.getQueryUrl(MasterDataType.LEVEL, company.getOrgAccountId()), String.class);
+                ResponseEntity<String> rstLevel = template.getForEntity(request.getOrgUrl(MasterDataType.LEVEL, company.getOrgAccountId()), String.class);
                 if(rstLevel.hasBody()){
                     List<DefaultValue> defaultValues = mapper.readValue(rstLevel.getBody(), new TypeReference<List<DefaultValue>>() {});
                     if(defaultValues.size() > 0)
