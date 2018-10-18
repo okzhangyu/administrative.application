@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * 项目
  */
-
+@Component
 public class ProjectJob {
     private Logger logger = LoggerFactory.getLogger(CostCenterJob.class);
 
@@ -53,7 +53,7 @@ public class ProjectJob {
             ResponseEntity<Response> result = template.postForEntity(request.getRequestUrl(MasterDataType.PROJECT, opType), projects, Response.class);
             if (result.hasBody()) {
                 Response res = result.getBody();
-                taskService.updateTask(taskRecords, res.getCode().equals("0") ? true : false, res.getMessage());
+                taskService.updateTask(TaskRecord.getTaskResult(taskRecords,res));
                 logger.info(">>>>>>>>>>>>>>同步项目主数据结果：" + res.toString());
             } else {
                 taskService.updateTask(taskRecords, false, result.getBody().toString());

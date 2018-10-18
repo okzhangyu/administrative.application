@@ -18,7 +18,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-
+@Component
 public class AccountJob {
 
     private Logger logger = LoggerFactory.getLogger(AccountJob.class);
@@ -51,7 +51,7 @@ public class AccountJob {
             ResponseEntity<Response> result = template.postForEntity(request.getRequestUrl(MasterDataType.ACCOUNT, opType), accountList, Response.class);
             if (result.hasBody()) {
                 Response res = result.getBody();
-                taskService.updateTask(taskRecords, res.getCode().equals("0") ? true : false, res.getMessage());
+                taskService.updateTask(TaskRecord.getTaskResult(taskRecords,res));
                 logger.info(">>>>>>>>>>>>>>同步科目主数据结果：" + res.toString());
             } else {
                 taskService.updateTask(taskRecords,false,result.getBody().toString());

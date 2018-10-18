@@ -1,9 +1,14 @@
 package com.avatech.edi.administrative.model.bo;
 
+import com.avatech.edi.administrative.model.dto.Response;
+import com.avatech.edi.administrative.model.dto.ResponseRow;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by asus on 2018/9/12.
@@ -13,6 +18,42 @@ import javax.persistence.Table;
 @Table(name="AVA_OA_TASK")
 public class TaskRecord implements ITaskRecord {
 
+    public static List<TaskRecord> getTaskResult(List<TaskRecord> taskRecords,Response response){
+        if(response.getCode().equals("0")){
+            return getTaskOK(taskRecords);
+        }else {
+            if(response.getRows().size()>0){
+                for (TaskRecord item:taskRecords) {
+                    List<ResponseRow> newList = response.getRows().stream()
+                            .filter(c->c.getCompanyName().equals(item.getCompanyName())
+                                    && c.getCode().equals(item.getUniqueKey()))
+                            .collect(Collectors.toList());
+                    if(newList.size()==1){
+                        item.setIsSync("E");
+                        item.setSyncMessage(newList.get(0).getMsg());
+                    }else {
+                        item.setIsSync("Y");
+                        item.setSyncMessage("同步成功");
+                    }
+                }
+                return taskRecords;
+            }else {
+                return getTaskOK(taskRecords);
+            }
+        }
+
+    }
+
+    private static List<TaskRecord> getTaskOK(List<TaskRecord> taskRecords){
+        if(taskRecords.size() > 0){
+            for (TaskRecord item:taskRecords ) {
+                item.setIsSync("Y");
+                item.setSyncMessage("同步成功");
+            }
+            return taskRecords;
+        }
+        return null;
+    }
     @Id
     @Column(name="Docentry")
     private Integer docEntry;

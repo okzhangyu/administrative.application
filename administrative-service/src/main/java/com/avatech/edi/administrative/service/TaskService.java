@@ -1,5 +1,6 @@
 package com.avatech.edi.administrative.service;
 
+import com.avatech.common.edi.administrative.common.exception.BusinessException;
 import com.avatech.edi.administrative.model.bo.TaskRecord;
 import com.avatech.edi.administrative.repository.ITaskRepository;
 import javafx.concurrent.Task;
@@ -37,6 +38,17 @@ public class TaskService {
             task.setSyncMessage(message);
         }
         taskRepository.saveAll(taskRecords);
+    }
+
+    public void updateTask(TaskRecord taskRecord){
+        taskRepository.save(taskRecord);
+    }
+
+    public void updateTask(List<TaskRecord> taskRecords){
+        if(taskRecords.size() > 0)
+            taskRepository.saveAll(taskRecords);
+        else
+            throw new BusinessException("中间表记录为空");
     }
 
     private List<Integer> getTaskIds(List<TaskRecord> taskRecords){

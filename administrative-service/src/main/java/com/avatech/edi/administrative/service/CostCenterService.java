@@ -39,7 +39,8 @@ public class CostCenterService {
         for (TaskRecord task : taskRecords) {
             try {
                 costCenter = costCenterRepository.findByKey(MasterData.getUniqueKey(task.getCompanyName(), task.getUniqueKey()));
-                costCenters.add(costCenter);
+                if(costCenter != null)
+                    costCenters.add(costCenter);
             } catch (Exception e) {
                 logger.error("查找成本中心错误：" + e.getMessage());
             }

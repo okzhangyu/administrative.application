@@ -1,0 +1,62 @@
+CREATE VIEW "OA_MID_BASE_TEST"."AVA_OA_OUDP" ( "ORGID",
+	 "CODE",
+	 "NAME",
+	 "DESC",
+	 "ENABLED",
+	 "SUPERIOR",
+	 "PATH",
+	 "SORTID",
+	 "ISGROUP" ) AS (((select
+	 '-5102051703747951877',
+	 concat('test01_',
+	 "Code"),
+	 "Name",
+	 'Remarks',
+	 'Y',
+	 ifnull("Father",
+	 '-5102051703747951877'),
+	 concat('00000009',
+
+				right(concat('0000',
+	 "Code"),
+	 4)),
+	 2,
+	 ''
+			from "SBO_KJSJT-ADDON".OUDP
+			where "Code" > 0)
+		UNION (select
+	 '8048597355068671755',
+	 concat('test01_',
+	 "Code"),
+	 "Name",
+	 'Remarks',
+	 'Y',
+	 ifnull("Father",
+	 '8048597355068671755'),
+	 concat('00000009',
+
+				right(concat('0000',
+	 "Code"),
+	 4)),
+	 2,
+	 ''
+			from "SBO_JS_KFCS01".OUDP
+			where "Code" > 0))
+	UNION (select
+	 '8048597355068671755',
+	 concat('test01_',
+	 "Code"),
+	 "Name",
+	 'Remarks',
+	 'Y',
+	 ifnull("Father",
+	 '8048597355068671755'),
+	 concat('00000009',
+
+			right(concat('0000',
+	 "Code"),
+	 4)),
+	 2,
+	 ''
+		from "SBO_JS_KFCS01".OUDP
+		where "Code" > 0)) WITH READ ONLY

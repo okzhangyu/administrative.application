@@ -146,13 +146,14 @@ public class Department implements IDepartment {
     @Override
     public String toString() {
         return "{" +
-                "code:'" + code + '\'' +
-                ", orgAccountId:'" + orgAccountId + '\'' +
-                ", name:'" + name + '\'' +
-                ", description:'" + description + '\'' +
-                ", enabled:'" + enabled + '\'' +
-                ", superior:'" + superior + '\'' +
-                ", path:'" + path + '\'' +
+                "\"code\":\"" + code + '\"' +
+                ", \"orgAccountId\":\"" + orgAccountId + '\"' +
+                ", \"name\":\"" + name + '\"' +
+                ", \"description\":\"" + description + '\"' +
+                ", \"enabled\":\"" + enabled + '\"' +
+                ", \"superior\":\"" + superior + '\"' +
+                ", \"path\":\"" + path + '\"' +
                 '}';
+
     }
 }

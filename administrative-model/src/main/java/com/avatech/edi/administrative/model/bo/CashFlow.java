@@ -78,11 +78,11 @@ public class CashFlow implements ICashFlow{
     @Override
     public String toString() {
         return "{" +
-                "key:'" + key + '\'' +
-                ", companyName:'" + companyName + '\'' +
-                ", cashFlowCode:'" + cashFlowCode + '\'' +
-                ", cashFlowName:'" + cashFlowName + '\'' +
-                ", active:'" + active + '\'' +
+                "\"key\":\"" + key + '\"' +
+                ", \"companyName\":\"" + companyName + '\"' +
+                ", \"cashFlowCode\":\"" + cashFlowCode + '\"' +
+                ", \"cashFlowName\":\"" + cashFlowName + '\"' +
+                ", \"active\":\"" + active + '\"' +
                 '}';
     }
 }
