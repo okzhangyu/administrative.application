@@ -20,10 +20,9 @@ import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-<<<<<<< HEAD
 
-=======
->>>>>>> edi/master
+
+
 @Component
 public class CompanyJob {
 
