@@ -56,4 +56,11 @@ public interface IVoucherItem {
       String getShortName();
 
       void setShortName(String shortName);
+
+      String getContractNo();
+
+      void setContractNo(String contractNo);
+
+      String getWorkOrderNo();
+      void setWorkOrderNo(String workOrderNo);
 }

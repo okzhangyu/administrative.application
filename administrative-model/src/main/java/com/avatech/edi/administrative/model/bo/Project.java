@@ -18,10 +18,13 @@ public class Project implements IProject {
     @Column(name = "Companycode")
     private String companyName;
 
+    @Column(name="DimCode")
+     private  Integer dimCode;
+
     @Column(name="Projectcode")
     private String projectCode;
 
-    @Column(name="Projectame")
+    @Column(name="Projectname")
     private String projectName;
 
     @Column(name="Active")
@@ -78,6 +81,16 @@ public class Project implements IProject {
     }
 
     @Override
+    public Integer getDimCode() {
+        return dimCode;
+    }
+
+    @Override
+    public void setDimCode(Integer dimCode) {
+        this.dimCode = dimCode;
+    }
+
+    @Override
     public String toString() {
         return "Project{" +
                 "key:'" + key + '\'' +
@@ -85,6 +98,7 @@ public class Project implements IProject {
                 ", projectCode:'" + projectCode + '\'' +
                 ", projectName:'" + projectName + '\'' +
                 ", active:'" + active + '\'' +
+                ", dimCode:'" + dimCode + '\'' +
                 '}';
     }
 }
