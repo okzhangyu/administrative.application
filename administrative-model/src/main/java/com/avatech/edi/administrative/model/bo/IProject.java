@@ -1,4 +1,7 @@
 package com.avatech.edi.administrative.model.bo;
+
+import javax.persistence.Id;
+
 /**
  * Created by asus on 2018/9/7.
  */
@@ -23,4 +26,8 @@ public interface IProject {
      String getActive();
 
      void setActive(String active);
+
+     Integer getDimCode();
+
+     void setDimCode(Integer dimCode);
 }

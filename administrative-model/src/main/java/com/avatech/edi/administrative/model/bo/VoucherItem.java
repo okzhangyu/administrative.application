@@ -10,7 +10,7 @@ import javax.persistence.Table;
 /**
  * Created by asus on 2018/9/7.
  */
-public class VoucherItem implements IVoucherItem {
+public class  VoucherItem implements IVoucherItem {
 
     private String oaNumber;
     private String accountCode;
@@ -25,6 +25,8 @@ public class VoucherItem implements IVoucherItem {
     private String cardCode;
     private String controlCode;
     private String shortName;
+    private String contractNo;
+    private String workOrderNo;
 
     @Override
     public String getOANumber() {
@@ -55,6 +57,26 @@ public class VoucherItem implements IVoucherItem {
     @Override
     public void setAccountName(String accountName) {
         this.accountName = accountName;
+    }
+
+    @Override
+    public String getContractNo() {
+        return contractNo;
+    }
+
+    @Override
+    public void setContractNo(String contractNo) {
+       this.contractNo = contractNo;
+    }
+
+    @Override
+    public String getWorkOrderNo() {
+        return workOrderNo;
+    }
+
+    @Override
+    public void setWorkOrderNo(String workOrderNo) {
+       this.workOrderNo = workOrderNo;
     }
 
     @Override
