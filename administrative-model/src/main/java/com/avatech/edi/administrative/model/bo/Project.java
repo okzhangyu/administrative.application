@@ -1,5 +1,7 @@
 package com.avatech.edi.administrative.model.bo;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
+
 import javax.persistence.*;
 
 /**
@@ -12,14 +14,13 @@ import javax.persistence.*;
 public class Project implements IProject {
 
     @Id
+    @Ignore
     @Column(name = "Uniquekey")
     private String key;
 
+    @Ignore
     @Column(name = "Companycode")
     private String companyName;
-
-    @Column(name="DimCode")
-     private  Integer dimCode;
 
     @Column(name="Projectcode")
     private String projectCode;
@@ -29,6 +30,19 @@ public class Project implements IProject {
 
     @Column(name="Active")
     private String active;
+
+    @Column(name="Dimcode")
+    private  String dimcode;
+
+    @Override
+    public String getDimCode() {
+        return dimcode;
+    }
+
+    @Override
+    public void setDimCode(String dimCode) {
+        dimCode = dimCode;
+    }
 
     @Override
     public String getProjectCode() {
@@ -80,15 +94,9 @@ public class Project implements IProject {
         this.companyName = companyName;
     }
 
-    @Override
-    public Integer getDimCode() {
-        return dimCode;
-    }
 
-    @Override
-    public void setDimCode(Integer dimCode) {
-        this.dimCode = dimCode;
-    }
+
+
 
     @Override
     public String toString() {
@@ -98,7 +106,9 @@ public class Project implements IProject {
                 ", projectCode:'" + projectCode + '\'' +
                 ", projectName:'" + projectName + '\'' +
                 ", active:'" + active + '\'' +
-                ", dimCode:'" + dimCode + '\'' +
+                ", dimcode:'" + dimcode + '\'' +
+
+
                 '}';
     }
 }
