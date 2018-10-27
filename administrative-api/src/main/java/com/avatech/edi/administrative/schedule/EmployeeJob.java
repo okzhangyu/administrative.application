@@ -66,7 +66,7 @@ public class EmployeeJob {
                     // get department id by department code
                     ResponseEntity<String> resDept = template.getForEntity(request.getOrgUrl(MasterDataType.DEPARTMENT, employee.getDepartCode()), String.class);
                     if(resDept.hasBody()){
-                        List<DefaultValue> defaultValues = mapper.readValue(result.getBody(), new TypeReference<List<DefaultValue>>() {});
+                        List<DefaultValue> defaultValues = mapper.readValue(resDept.getBody(), new TypeReference<List<DefaultValue>>() {});
                         if(defaultValues.size() == 0) {
                             logger.error(">>>>>>>>>>>>>>同步员工主数据失败：根据员工部门code在OA未找到匹配的部门");
                             return;
@@ -75,11 +75,11 @@ public class EmployeeJob {
                     }
                     // call oa service push employee
 
-                    Map emMap = Employee.createEmpMap(employee);
+                    Map emMap = Employee.createEmpMap(employee,true);
                     String jsonResult = mapper.writerWithDefaultPrettyPrinter()
                             .writeValueAsString(emMap);
                     if(OpType.ADD.equals(opType)) {
-                        result = template.postForEntity(request.getRequestUrl(MasterDataType.EMPLOYEE, opType), emMap, String.class);
+                        result = template.postForEntity(request.getRequestUrl(MasterDataType.EMPLOYEE, opType),emMap, String.class);
                     }
                     else {
                         HttpHeaders headers = new HttpHeaders();
@@ -87,7 +87,7 @@ public class EmployeeJob {
                         MediaType mediaType = new MediaType(mimeType.getType(), mimeType.getSubtype(), Charset.forName("UTF-8"));
                         headers.setContentType(mediaType);
                         if (OpType.UPDATE.equals(opType)) {
-                            HttpEntity<Map> entity = new HttpEntity<Map>(Employee.createEmpMap(employee), headers);
+                            HttpEntity<Map> entity = new HttpEntity<Map>(Employee.createEmpMap(employee,false), headers);
                             result = template.exchange(request.getRequestUrl(MasterDataType.EMPLOYEE, opType), HttpMethod.PUT, entity, String.class);
 
                         }

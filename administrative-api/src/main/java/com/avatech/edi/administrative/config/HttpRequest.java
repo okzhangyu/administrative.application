@@ -19,6 +19,7 @@ public class HttpRequest {
     private final String DEPARTMENT_INFO_URL = "http://oatest.chinaautomationgroup.com/seeyon/rest/orgDepartment/code/";
     private final String POSITION_URL = "http://oatest.chinaautomationgroup.com/seeyon/rest/orgPosts/";
     private final String LEVEL_URL = "http://oatest.chinaautomationgroup.com/seeyon/rest/orgLevels/";
+    //private final String EMPLOYEE_
 
 
 
@@ -84,6 +85,8 @@ public class HttpRequest {
                         return BASE_URL + "sapvoucher/changeproject";
                     case MasterDataType.DEPARTMENT:
                         return BASE_URL + "orgDepartment";
+                    case MasterDataType.EMPLOYEE:
+                        return BASE_URL + "orgMember/updateMembers";
                     case MasterDataType.CASHFLOW:
                         return BASE_URL + "sapvoucher/changecashstream";
                     default:
@@ -116,7 +119,7 @@ public class HttpRequest {
 
     private String getToken() {
         UserToken userToken = userTokenService.fetchUserToken();
-        if (userToken == null || (userToken != null && userToken.getExpired() <= DateUtil.getLongTime())) {
+        if (userToken == null||userToken.getToken()==null||userToken.getToken().isEmpty()  || (userToken.getToken() != null && userToken.getExpired() <= DateUtil.getLongTime())) {
             RestTemplate template = new RestTemplate();
             String token = template.getForObject(TOKEN_URL, String.class);
             userToken = new UserToken();
