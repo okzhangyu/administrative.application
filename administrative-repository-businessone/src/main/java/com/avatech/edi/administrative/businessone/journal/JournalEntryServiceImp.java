@@ -56,6 +56,7 @@ public class JournalEntryServiceImp implements B1JournalEntryService{
                 }
                 if(!StringUtils.isEmpty(item.getCashFlowCode())){
                     //journalEntries.getLines().getPrimaryFormItems().setCashFlowLineItemID(Integer.valueOf(item.getCashFlowCode()));
+                    journalEntries.getLines().getUserFields().getFields().item(CASHFLOW).setValue(item.getCashFlowCode());
                 if(item.getContractNo()!=null ) {
                     journalEntries.getLines().getUserFields().getFields().item(ContractNo).setValue(item.getContractNo());
                 }

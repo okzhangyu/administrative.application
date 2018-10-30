@@ -11,7 +11,7 @@ import java.util.Map;
 @Table(name = "AVA_OA_VIEW_OHEM")
 public class Employee implements IEmployee {
 
-    public static Map createEmpMap(Employee employee){
+    public static Map createEmpMap(Employee employee ,Boolean isAdd){
         Map empMap = new HashMap(){
             {
                 put("orgAccountId", employee.getOrgAccountId());
@@ -24,8 +24,11 @@ public class Employee implements IEmployee {
                 put("gender", employee.getGender());//性别
                 put("password", employee.getPassword());//密码
                 put("loginName", employee.getLoginName());//登录名
-                put("orgLevelId", employee.getOrgLevelId());//职务ID
-                put("orgPostId", employee.getOrgPostId());//岗位ID
+                if(isAdd) {
+                    put("orgLevelId", employee.getOrgLevelId());//职务ID
+                    put("orgPostId", employee.getOrgPostId());//岗位ID
+                    put("memberId",employee.getMemberId());
+                }
             }
         };
         return empMap;
@@ -188,4 +191,17 @@ public class Employee implements IEmployee {
     public void setDepartCode(String departCode) {
         this.departCode = departCode;
     }
+
+    @Override
+    public String getMemberId() {
+        return null;
+    }
+
+    @Override
+    public void setMemberId(String memberId) {
+
+
+    }
+
+
 }

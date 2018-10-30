@@ -19,7 +19,7 @@ public class HttpRequest {
     private final String DEPARTMENT_INFO_URL = "http://oatest.chinaautomationgroup.com/seeyon/rest/orgDepartment/code/";
     private final String POSITION_URL = "http://oatest.chinaautomationgroup.com/seeyon/rest/orgPosts/";
     private final String LEVEL_URL = "http://oatest.chinaautomationgroup.com/seeyon/rest/orgLevels/";
-    //private final String EMPLOYEE_
+    private final String EMPLOYEE_INFO_URL="http://oatest.chinaautomationgroup.com/seeyon/rest/orgMember/code/";
 
 
 
@@ -50,6 +50,8 @@ public class HttpRequest {
                 return LEVEL_URL + value;
             case MasterDataType.DEPARTMENT:
                 return DEPARTMENT_INFO_URL + value;
+            case MasterDataType.EMPLOYEE:
+                    return EMPLOYEE_INFO_URL+value;
             default:
                 throw new ServiceException("无效的主数据类型");
         }
