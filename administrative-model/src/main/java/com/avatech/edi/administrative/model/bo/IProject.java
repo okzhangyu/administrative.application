@@ -27,7 +27,10 @@ public interface IProject {
 
      void setActive(String active);
 
-     Integer getDimCode();
+     String getDimCode();
+     void  setDimCode(String dimcode);
 
-     void setDimCode(Integer dimCode);
+
+
+
 }

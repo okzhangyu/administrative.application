@@ -46,4 +46,6 @@ public class MasterDataType {
      * 级别
      */
     public static final String LEVEL = "A02";
+
+
 }

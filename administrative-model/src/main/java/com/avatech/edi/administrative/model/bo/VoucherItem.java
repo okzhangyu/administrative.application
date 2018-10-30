@@ -199,6 +199,8 @@ public class  VoucherItem implements IVoucherItem {
                 ", cardCode:'" + cardCode + '\'' +
                 ", controlCode:'" + controlCode + '\'' +
                 ", shortName:'" + shortName + '\'' +
+                ", workOrderNo:'" + workOrderNo + '\'' +
+                ", contractNo:'" +  contractNo+ '\'' +
                 '}';
     }
 }

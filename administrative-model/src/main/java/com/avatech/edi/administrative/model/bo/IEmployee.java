@@ -51,4 +51,7 @@ public interface IEmployee {
     String getDepartCode();
 
     void setDepartCode(String departCode);
+
+    String  getMemberId();
+    void   setMemberId(String memberId);
 }
