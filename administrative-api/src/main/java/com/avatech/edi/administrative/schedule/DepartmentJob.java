@@ -13,6 +13,7 @@ import com.avatech.edi.administrative.service.TaskService;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,7 +86,9 @@ public class DepartmentJob {
                 }
                 if (result.hasBody()) {
                     OrgResponse res = (OrgResponse) mapper.readValue(result.getBody(), OrgResponse.class);
-                    if(res != null){
+
+
+                    if(res == null){
                         record.setIsSync("E");
                         record.setSyncMessage("同步失败，返回结果为空");
                     }else {

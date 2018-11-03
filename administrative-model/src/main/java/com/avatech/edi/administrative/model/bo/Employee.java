@@ -18,16 +18,17 @@ public class Employee implements IEmployee {
                 put("code", employee.getCode());//编号
                 put("name", employee.getName());//姓名
                 put("orgDepartmentId", employee.getOrgDepartmentId());//部门ID
-                put("telNumber", employee.getTelNumber());//移动电话
-                put("officeNum", "");//办公电话
-                put("emailAddress", employee.getEmailAddress());//电子邮件
-                put("gender", employee.getGender());//性别
-                put("password", employee.getPassword());//密码
-                put("loginName", employee.getLoginName());//登录名
+
                 if(isAdd) {
                     put("orgLevelId", employee.getOrgLevelId());//职务ID
                     put("orgPostId", employee.getOrgPostId());//岗位ID
                     put("memberId",employee.getMemberId());
+                    put("telNumber", employee.getTelNumber());//移动电话
+                    put("officeNum", "");//办公电话
+                    put("emailAddress", employee.getEmailAddress());//电子邮件
+                    put("gender", employee.getGender());//性别
+                    put("password", employee.getPassword());//密码
+                    put("loginName", employee.getLoginName());//登录名
                 }
             }
         };
