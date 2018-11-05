@@ -38,7 +38,6 @@ public class JournalEntryServiceImp implements B1JournalEntryService{
             journalEntries.setMemo(voucher.getComments());
             journalEntries.getUserFields().getFields().item(OANUMBER).setValue(voucher.getOaNumber());
 
-
             for (IVoucherItem item:voucher.getVoucherItems()) {
                 if(StringUtils.isEmpty(item.getAccountCode()))
                     throw new B1Exception("AccountCode为空");
@@ -54,17 +53,15 @@ public class JournalEntryServiceImp implements B1JournalEntryService{
                 if(!StringUtils.isEmpty(item.getProject())){
                     journalEntries.getLines().setProjectCode(item.getProject());
                 }
-                if(!StringUtils.isEmpty(item.getCashFlowCode())){
+                if(!StringUtils.isEmpty(item.getCashFlowCode())) {
                     //journalEntries.getLines().getPrimaryFormItems().setCashFlowLineItemID(Integer.valueOf(item.getCashFlowCode()));
                     journalEntries.getLines().getUserFields().getFields().item(CASHFLOW).setValue(item.getCashFlowCode());
-                if(item.getContractNo()!=null ) {
-                    journalEntries.getLines().getUserFields().getFields().item(ContractNo).setValue(item.getContractNo());
-                }
-                if (item.getWorkOrderNo() != null) {
-                    journalEntries.getLines().getUserFields().getFields().item(WorkOrderNo).setValue(item.getWorkOrderNo());
-
-                }
-
+                    if (item.getContractNo() != null) {
+                        journalEntries.getLines().getUserFields().getFields().item(ContractNo).setValue(item.getContractNo());
+                    }
+                    if (item.getWorkOrderNo() != null) {
+                        journalEntries.getLines().getUserFields().getFields().item(WorkOrderNo).setValue(item.getWorkOrderNo());
+                    }
                 }
                 if(item.getCredit() > 0)
                     journalEntries.getLines().setCredit(item.getCredit());
@@ -72,7 +69,6 @@ public class JournalEntryServiceImp implements B1JournalEntryService{
                     journalEntries.getLines().setDebit(item.getDebit());
                 journalEntries.getLines().add();
             }
-
             int rstCode = journalEntries.add();
             if(rstCode == 0){
                 return company.getNewObjectKey();
@@ -82,6 +78,10 @@ public class JournalEntryServiceImp implements B1JournalEntryService{
         }catch (SBOCOMException e){
             logger.error("",e);
             throw new B1Exception(e);
+        }finally {
+            if(company != null){
+                company.disconnect();
+            }
         }
     }
 }
