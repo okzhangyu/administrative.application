@@ -14,8 +14,18 @@ public class OrgResponse {
 
     private List<SuccessMsgs> successMsgs;
 
+    private List<ErrorMsgInfos> errorMsgInfos;
+
     public Boolean getSuccess() {
         return success;
+    }
+
+    public List<ErrorMsgInfos> getErrorMsgInfos() {
+        return errorMsgInfos;
+    }
+
+    public void setErrorMsgInfos(List<ErrorMsgInfos> errorMsgInfos) {
+        this.errorMsgInfos = errorMsgInfos;
     }
 
     public void setSuccess(Boolean success) {

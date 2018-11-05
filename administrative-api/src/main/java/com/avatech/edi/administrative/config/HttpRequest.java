@@ -23,6 +23,8 @@ public class HttpRequest {
 
 
 
+
+
     @Autowired
     private UserTokenService userTokenService;
 
@@ -37,8 +39,8 @@ public class HttpRequest {
         return resource + "?token=" + getToken();
     }
 
-    public String getDeleteUrl(String objCode,String objKey){
-        String resource = getDeleteResource(objCode,objKey);
+    public String getDeleteUrl(String objCode,String id){
+        String resource = getDeleteResource(objCode,id);
         return resource + "?token=" + getToken();
     }
 
@@ -108,12 +110,12 @@ public class HttpRequest {
         }
     }
 
-    private String getDeleteResource(String objCode,String objKey){
+    private String getDeleteResource(String objCode,String id){
         switch (objCode) {
             case MasterDataType.DEPARTMENT:
                 return BASE_URL + String.format("orgDepartment/code/%s/enabled/false");
             case MasterDataType.EMPLOYEE:
-                return BASE_URL + String.format("orgMember/%s/enabled/false",objKey);
+                return BASE_URL+String.format("orgMember/%s/enabled/false",id);
             default:
                 throw new ServiceException("无效的主数据类型");
         }

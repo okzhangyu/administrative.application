@@ -25,6 +25,7 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.swing.*;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -59,12 +60,19 @@ public class EmployeeJob {
             if (taskRecords.size() == 0)
                 return;
             logger.info(">>>>>>>>>>>>>>获取未同步员工主数据{" + taskRecords.size() + "}条");
-            List<Employee> employees = employeeService.fetchEmployees(taskRecords);
-            logger.info(">>>>>>>>>>>>>>同步员工主数据:" + employees.toString());
+           Employee employee;
             RestTemplate template = new RestTemplate();
             ResponseEntity<String> result=null;
-            for (Employee employee:employees) {
+            for (TaskRecord record:taskRecords) {
+                employee=employeeService.fetchEmployee(record);
+                if(record==null){
+                    record.setIsSync("E");
+                    record.setSyncMessage("未找到人员信息");
+                    taskService.updateTask(record);
+                    continue;
+                }
                 try{
+
                     // get department id by department code
                     ResponseEntity<String> resDept = template.getForEntity(request.getOrgUrl(MasterDataType.DEPARTMENT, employee.getDepartCode()), String.class);
                     if(resDept.hasBody()){
@@ -101,15 +109,17 @@ public class EmployeeJob {
                             }
                             String id = defaultValues.get(0).getId();
                             if (OpType.UPDATE.equals(opType)) {
-                                HttpEntity<Map> entity = new HttpEntity<Map>(Employee.createEmpMap(employee,false), headers);
-                                entity.getBody().put("id",id);
-                                result = template.exchange(request.getRequestUrl(MasterDataType.EMPLOYEE, opType), HttpMethod.PUT, entity, String.class);
-
+                                List<Map> maps = new ArrayList();
+                                Map map = Employee.createEmpMap(employee, false);
+                                map.put("id", id);
+                                maps.add(map);
+                                HttpEntity<List<Map>> entity = new HttpEntity<List<Map>>(maps, headers);
+                                result = template.postForEntity(request.getRequestUrl(MasterDataType.EMPLOYEE, opType), entity, String.class);
                             }
                             if (OpType.DELETE.equals(opType)) {
 
 
-                                result = template.exchange(request.getRequestUrl(MasterDataType.EMPLOYEE, opType), HttpMethod.PUT, null, String.class);
+                                result = template.exchange(request.getDeleteUrl(MasterDataType.EMPLOYEE, id), HttpMethod.PUT, null, String.class);
                             }
                         }
                     }
