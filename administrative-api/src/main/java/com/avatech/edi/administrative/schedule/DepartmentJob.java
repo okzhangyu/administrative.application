@@ -92,7 +92,7 @@ public class DepartmentJob {
                         record.setIsSync("E");
                         record.setSyncMessage("同步失败，返回结果为空");
                     }else {
-                        if( res.getSuccess().equals("Successful") ){
+                        if( res.getSuccess()){
                             record.setIsSync("Y");
                             record.setSyncMessage("Successful");
                         }else {
