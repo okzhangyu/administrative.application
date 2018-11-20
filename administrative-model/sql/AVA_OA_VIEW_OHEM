@@ -1,0 +1,49 @@
+CREATE VIEW "OA_MID_BASE_TEST"."AVA_OA_VIEW_OHEM" ( "ORGID",
+	 "ORGLEVELID",
+	 "ORGPOSTID",
+	 "DEPTID",
+	 "DEPTCODE",
+	 "CODE",
+	 "NAME",
+	 "GENDER",
+	 "LOGINNAME",
+	 "PASSWORD",
+	 "TELNUMBER",
+	 "EMAILADDRESS" ) AS select
+	 (select
+	 t0."ORGID"
+	from AVA_OA_COMPANY t0
+	inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName"),
+	 (select
+	 t0."DEFLEVELID"
+	from AVA_OA_COMPANY t0
+	inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName"),
+	 (select
+	 t0."DEFPOSITIONID"
+	from AVA_OA_COMPANY t0
+	inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName"),
+	 '',
+	 concat(concat((select
+	 t0."CODE"
+			from AVA_OA_COMPANY t0
+			inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName"),
+	'_'),
+	"dept"),
+	 concat(concat((select
+	 t0."CODE"
+			from AVA_OA_COMPANY t0
+			inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName"),
+	'_'),
+	"empID"),
+	 concat("lastName",
+	"firstName") ,
+	 case "sex" when 'M'
+then 0 when 'F'
+then 1
+else -1
+end ,
+	 "empID",
+	 "empID",
+	 "mobile",
+	 "email"
+from "SBO_JS_KFCS01".OHEM

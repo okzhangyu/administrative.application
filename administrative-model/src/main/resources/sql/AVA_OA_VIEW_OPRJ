@@ -1,76 +1,34 @@
+DROP  VIEW   "OA_MID_BASE_TEST"."AVA_OA_VIEW_OPRJ";
 CREATE VIEW "OA_MID_BASE_TEST"."AVA_OA_VIEW_OPRJ" ( "UNIQUEKEY",
 	 "COMPANYCODE",
-	 "PROJECTCODE",
-	 "PROJECTNAME",
+	 "PRJCODE",
+	 "PRJNAME",
 	 "ACTIVE",
-	 "DIMCODE" ) AS (((((((select
-	 concat('0001_',
-	 "PrjCode"),
-	 '0001',
-	 "PrjCode",
-	 "PrjName",
-	 "Active" ,
-	1
-							from "SBO_JS_KFCS01".OPRJ)
-						UNION (select
-	 concat('0001_',
-	 "PrjCode"),
-	 '0001',
-	 "PrjCode",
-	 "PrjName",
-	 "Active" ,
-	1
-							from "SBO_JS_KFCS02".OPRJ))
-					UNION (select
-	 concat('A03_',
-	 "PrjCode"),
-	 'A03',
-	 "PrjCode",
-	 "PrjName",
-	 "Active" ,
-	1
-						from "SBO_JS_KFCS03".OPRJ))
-				UNION (select
-	 concat('A04_',
-	 "U_HTH"),
-	 'A04',
-	 "U_HTH",
-	 "U_HTH",
-	 'Y' ,
-	2
-					from "SBO_KJS_ZDHSAPCS".ORDR
-					where ifnull("U_HTH",
-	'')!=''))
-			UNION (select
-	 concat('0001_',
-	 "U_HTH"),
-	 '0001',
-	 "U_HTH",
-	 "U_HTH",
-	 'Y',
-	2
-				FROM "SBO_JS_KFCS01".ORDR
-				WHERE IFNULL("U_HTH",
-	'')!=''))
-		UNION (select
-	 concat('A04_',
-	 "U_GDH" ),
-	 'A04',
-	 "U_GDH",
-	 "U_GDH",
-	 'Y' ,
-	3
-			from "SBO_KJS_ZDHSAPCS".RDR1
-			WHERE IFnull("U_GDH",
-	'') !=''))
-	UNION (select
-	 concat('0001_',
-	 "U_GDH" ),
-	 '0001',
-	 "U_GDH",
-	 "U_GDH",
-	 'Y' ,
-	3
-		from "SBO_JS_KFCS01".RDR1
-		WHERE IFnull("U_GDH",
-	'') !='')) WITH READ ONLY
+	 "CONTRACTNO",
+	 "CONTRACTNAME",
+	 "WORKORDERNO",
+	 "WORKORDERNAME"
+	  )  AS ((select
+	 concat(concat(concat(concat((select
+	 t0."CODE"
+					from AVA_OA_COMPANY t0
+					inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName" ),
+	 '_'),
+	 t0."DocEntry" ),'_'),
+	 t0."LineNum" ),
+	(select
+	 t0."CODE"
+			from AVA_OA_COMPANY t0
+			inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName"),
+
+	 t2."PrjCode",
+	 t2."PrjName",
+	 t2."Active",
+	 t1."U_ContractNo",
+	 t1."U_ContractName",
+	 t0."U_WorkOrderNo",
+	 t0."U_WorkOrderName"
+from "SBO_JS_KFCS01"."RDR1" t0
+left join "SBO_JS_KFCS01"."ORDR" t1 on t0."DocEntry" = t1."DocEntry"
+left join "SBO_JS_KFCS01"."OPRJ" t2 on ifnull(t0."Project",
+	'') = t2."PrjCode")) WITH READ ONLY

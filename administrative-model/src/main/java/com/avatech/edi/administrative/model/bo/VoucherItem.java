@@ -27,6 +27,8 @@ public class  VoucherItem implements IVoucherItem {
     private String shortName;
     private String contractNo;
     private String workOrderNo;
+    private String workOrderName;
+    private String contractName;
 
     @Override
     public String getOANumber() {
@@ -77,6 +79,28 @@ public class  VoucherItem implements IVoucherItem {
     @Override
     public void setWorkOrderNo(String workOrderNo) {
        this.workOrderNo = workOrderNo;
+    }
+
+    @Override
+    public String getWorkOrderName() {
+        return workOrderName;
+    }
+
+    @Override
+    public void setWorkOrderName(String workOrderName) {
+        this.workOrderName=workOrderName;
+
+    }
+
+    @Override
+    public String getContractName() {
+        return contractName;
+    }
+
+    @Override
+    public void setContractName(String contractName) {
+        this.contractName=contractName;
+
     }
 
     @Override
@@ -183,6 +207,8 @@ public class  VoucherItem implements IVoucherItem {
         this.shortName = shortName;
     }
 
+
+
     @Override
     public String toString() {
         return "VoucherItem{" +
@@ -200,7 +226,7 @@ public class  VoucherItem implements IVoucherItem {
                 ", controlCode:'" + controlCode + '\'' +
                 ", shortName:'" + shortName + '\'' +
                 ", workOrderNo:'" + workOrderNo + '\'' +
-                ", contractNo:'" +  contractNo+ '\'' +
+                ", workOrderName:'" + workOrderName + '\'' +
                 '}';
     }
 }

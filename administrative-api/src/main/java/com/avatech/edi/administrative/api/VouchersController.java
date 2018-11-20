@@ -31,7 +31,11 @@ public class VouchersController {
         logger.info("接收凭单信息>>>>>>>>>{0}",voucher.toString());
         Result result = new Result();
         try{
-            result = Result.ok(voucherService.saveVoucher(voucher));
+            if(voucher.getPZLX() == null || voucher.getPZLX().equals("1")){
+                result = Result.error("10002","凭证类型的值只能为1");
+            }else {
+                result = Result.ok(voucherService.saveVoucher(voucher));
+            }
         }catch (BaseException e){
             return Result.error("10000",e.getMessage());
         }catch (Exception e){
@@ -47,6 +51,7 @@ public class VouchersController {
         voucher.setOaNumber("1");
         voucher.setDocDate(new Date());
         voucher.setComments("this is test");
+
         List<VoucherItem> voucherItems = new ArrayList<>();
 
         VoucherItem voucherItem = new VoucherItem();

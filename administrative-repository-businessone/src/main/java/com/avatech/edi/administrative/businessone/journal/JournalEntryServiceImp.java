@@ -21,6 +21,9 @@ public class JournalEntryServiceImp implements B1JournalEntryService{
     private final static String OANUMBER = "U_OANumber";
     private final  static  String ContractNo="U_ContractNo";
     private final  static  String WorkOrderNo="U_WorkOrderNo";
+    private final  static String  PZLX="U_PZLX";
+    private final  static String  WorkOrderName="U_WorkOrderName";
+    private final  static String  ContractName="U_ContractName";
     @Override
     public String createJournalEntry(IVoucher voucher, B1Connection connection){
         BORepositoryBusinessOne boRepositoryBusinessOne = null;
@@ -37,6 +40,7 @@ public class JournalEntryServiceImp implements B1JournalEntryService{
             journalEntries.setTaxDate(new Date());
             journalEntries.setMemo(voucher.getComments());
             journalEntries.getUserFields().getFields().item(OANUMBER).setValue(voucher.getOaNumber());
+            journalEntries.getUserFields().getFields().item(PZLX).setValue(voucher.getPZLX());
 
             for (IVoucherItem item:voucher.getVoucherItems()) {
                 if(StringUtils.isEmpty(item.getAccountCode()))
@@ -62,6 +66,14 @@ public class JournalEntryServiceImp implements B1JournalEntryService{
                     if (item.getWorkOrderNo() != null) {
                         journalEntries.getLines().getUserFields().getFields().item(WorkOrderNo).setValue(item.getWorkOrderNo());
                     }
+                    if (item.getWorkOrderName()!=null){
+                        journalEntries.getLines().getUserFields().getFields().item(WorkOrderName).setValue(item.getWorkOrderName());
+                    }
+                    if(item.getContractName()!=null){
+                        journalEntries.getLines().getUserFields().getFields().item(ContractName).setValue(item.getContractName());
+
+                    }
+
                 }
                 if(item.getCredit() > 0)
                     journalEntries.getLines().setCredit(item.getCredit());

@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Table(name="AVA_OA_VIEW_OPRJ")
 public class Project implements IProject {
 
-    @Id
+
     @Ignore
     @Column(name = "Uniquekey")
     private String key;
@@ -22,26 +22,84 @@ public class Project implements IProject {
     @Column(name = "Companycode")
     private String companyName;
 
-    @Column(name="Projectcode")
+    @Column(name="Prjcode")
     private String projectCode;
 
-    @Column(name="Projectname")
+    @Column(name="Prjname")
     private String projectName;
 
     @Column(name="Active")
     private String active;
 
-    @Column(name="Dimcode")
-    private  String dimcode;
+    @Column(name = "Contractno")
+    private String contractNo;
+
+    @Column(name = "Contractname")
+    private String contractName;
+
+    @Column(name = "Workorderno")
+    private String workOrderNo;
+
+    @Column(name = "Workordername")
+    private String workOrderName;
+
+    @Id
+    @Column(name = "Itemno")
+    private String itemNo;
+
+
+
 
     @Override
-    public String getDimCode() {
-        return dimcode;
+    public String getContractNo() {
+        return contractNo;
     }
 
     @Override
-    public void setDimCode(String dimCode) {
-        dimCode = dimCode;
+    public void setContractNo(String contractNo) {
+        this.contractNo=contractNo;
+
+    }
+
+    @Override
+    public String getContractName() {
+        return contractName;
+    }
+
+    @Override
+    public void setContractName(String contractName) {
+        this.contractName=contractName;
+
+    }
+
+    @Override
+    public String getWorkOrderNo() {
+        return workOrderNo;
+    }
+
+    @Override
+    public void setWorkOrderNo(String workOrderNo) {
+        this.workOrderName=workOrderNo;
+    }
+
+    @Override
+    public String getWorkOrderName() {
+        return workOrderName;
+    }
+
+    @Override
+    public void setWorkOrderName(String workOrderName) {
+        this.workOrderName=workOrderName;
+    }
+
+    @Override
+    public String getItemNo() {
+        return itemNo;
+    }
+
+    @Override
+    public void setItemNo(String itemNo) {
+        this.itemNo=itemNo;
     }
 
     @Override
@@ -106,8 +164,10 @@ public class Project implements IProject {
                 ", projectCode:'" + projectCode + '\'' +
                 ", projectName:'" + projectName + '\'' +
                 ", active:'" + active + '\'' +
-                ", dimcode:'" + dimcode + '\'' +
-
+                ", contractNo:'" + contractName + '\'' +
+                ", contractName:'" + contractName + '\'' +
+                ", workOrderNo:'" + workOrderName + '\'' +
+                ", workOrderName:'" + workOrderName + '\'' +
 
                 '}';
     }

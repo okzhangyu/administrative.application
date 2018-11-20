@@ -25,12 +25,13 @@ public class CashFlowService {
     @Autowired
     private TaskService taskService;
 
-    public List<CashFlow> fetchUnSyncCashFlow(){
-        List<TaskRecord> taskRecords = taskService.fetchTaskList(MasterDataType.CASHFLOW);
-        if(taskRecords.size() == 0)
-            return null;
-        return fetchCashFlowByTask(taskRecords);
-    }
+//    public List<CashFlow> fetchUnSyncCashFlow(){
+//        List<TaskRecord> taskRecords = taskService.fetchTaskList(MasterDataType.CASHFLOW);
+//        if(taskRecords.size() == 0)
+//            return null;
+//       return fetchCashFlowByTask(taskRecords);
+//
+//    }
 
     public List<CashFlow> fetchCashFlowByTask(List<TaskRecord> taskRecords) {
         List<CashFlow> cashFlows = new ArrayList<>();

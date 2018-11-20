@@ -27,8 +27,20 @@ public interface IProject {
 
      void setActive(String active);
 
-     String getDimCode();
-     void  setDimCode(String dimcode);
+     String getContractNo();
+     void setContractNo(String contractNo);
+
+     String getContractName();
+     void  setContractName(String contractName);
+
+     String getWorkOrderNo();
+     void  setWorkOrderNo(String workOrderNo);
+
+     String getWorkOrderName();
+     void setWorkOrderName(String workOrderName);
+
+     String getItemNo();
+     void setItemNo(String itemNo);
 
 
 

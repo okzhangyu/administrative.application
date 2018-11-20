@@ -1,0 +1,70 @@
+CREATE VIEW "OA_MID_BASE_TEST"."AVA_OA_OUDP" ( "ORGID",
+	 "CODE",
+	 "NAME",
+	 "DESC",
+	 "ENABLED",
+	 "SUPERIOR",
+	 "PATH",
+	 "SORTID",
+	 "ISGROUP" ) AS ((select
+	 (select
+	 t0."ORGID"
+			from AVA_OA_COMPANY t0
+			inner join "SBO_KJSJT-ADDON".CINF t1 on t0."NAME" = t1."CompnyName"),
+	 concat(concat((select
+	 t0."CODE"
+					from AVA_OA_COMPANY t0
+					inner join "SBO_KJSJT-ADDON".CINF t1 on t0."NAME" = t1."CompnyName"),
+	'_'),
+	"Code"),
+	 "Name",
+	 'Remarks',
+	 'Y',
+	 ifnull("Father",
+	 (select
+	 t0."ORGID"
+				from AVA_OA_COMPANY t0
+				inner join "SBO_KJSJT-ADDON".CINF t1 on t0."NAME" = t1."CompnyName")),
+	 concat(((select
+	 t0."PATH"
+					from AVA_OA_COMPANY t0
+					inner join "SBO_KJSJT-ADDON".CINF t1 on t0."NAME" = t1."CompnyName")),
+
+			right(concat('0000',
+	"Code"),
+	4)),
+	2,
+	 ''
+		from "SBO_KJSJT-ADDON".OUDP
+		where "Code" > 0)
+	UNION (select
+	 (select
+	 t0."ORGID"
+			from AVA_OA_COMPANY t0
+			inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName"),
+	 concat(concat((select
+	 t0."CODE"
+					from AVA_OA_COMPANY t0
+					inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName"),
+	'_'),
+	"Code"),
+	 "Name",
+	 'Remarks',
+	 'Y',
+	 ifnull("Father",
+	 (select
+	 t0."ORGID"
+				from AVA_OA_COMPANY t0
+				inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName")),
+	 concat(((select
+	 t0."PATH"
+					from AVA_OA_COMPANY t0
+					inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName")),
+
+			right(concat('0000',
+	"Code"),
+	4)),
+	2,
+	 ''
+		from "SBO_JS_KFCS01".OUDP
+		where "Code" > 0)) WITH READ ONLY

@@ -27,4 +27,14 @@ public interface IVoucher {
 
      void setVoucherItems(List<VoucherItem> voucherItems);
 
+     void setPZLX(String pzlx);
+
+     String getPZLX();
+
+     String getContractNo();
+     void  setContractNo(String contractNo);
+
+     String getContractName();
+     void  setContractName(String contractName);
+
 }

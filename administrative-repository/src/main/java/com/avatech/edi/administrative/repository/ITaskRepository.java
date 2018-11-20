@@ -11,4 +11,5 @@ public interface ITaskRepository extends CrudRepository<TaskRecord,Integer> {
 
     List<TaskRecord> findByObjectCodeAndIsSyncAndOpType(String objectCode, String isSync,String opType);
 
+    List<TaskRecord> findTop30ByObjectCodeAndIsSyncAndOpType(String objectCode, String isSync,String opType);
 }

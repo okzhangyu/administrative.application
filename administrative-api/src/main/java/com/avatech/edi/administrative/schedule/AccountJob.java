@@ -46,6 +46,8 @@ public class AccountJob {
                 return;
             logger.info(">>>>>>>>>>>>>>获取未同步科目主数据{" + taskRecords.size() + "}条");
             List<Account> accountList = accountService.fetchAccountByTask(taskRecords);
+            if (accountList==null)
+                return;
             RestTemplate template = new RestTemplate();
             logger.info(">>>>>>>>>>>>>>同步科目主数据:" + accountList.toString());
             ResponseEntity<Response> result = template.postForEntity(request.getRequestUrl(MasterDataType.ACCOUNT, opType), accountList, Response.class);

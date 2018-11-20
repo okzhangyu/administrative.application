@@ -35,7 +35,7 @@ public class CostCenterJob {
     @Autowired
     private HttpRequest request;
 
-    @Scheduled(cron = "0 0/1 * * * ?")
+    @Scheduled(cron = "0 0/5 * * * ?")
     private void process() {
         processData(OpType.ADD);
         processData(OpType.UPDATE);

@@ -1,0 +1,34 @@
+CREATE VIEW "OA_MID_BASE_TEST"."AVA_OA_VIEW_OCFW" ( "UNIQUEKEY",
+	 "COMPANYCODE",
+	 "CASHFLOWCODE",
+	 "CASHFLOWNAME",
+	 "ACTIVE" ) AS ((select
+	 concat(concat((select
+	 t0."CODE"
+					from AVA_OA_COMPANY t0
+					inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName"),
+	'_'),
+	"CFWId"),
+	 (select
+	 t0."CODE"
+			from AVA_OA_COMPANY t0
+			inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName"),
+	 "CFWId",
+	 "CFWName",
+	 'Y'
+		from "SBO_JS_KFCS01".OCFW)
+	UNION (select
+	 concat(concat((select
+	 t0."CODE"
+					from AVA_OA_COMPANY t0
+					inner join "SBO_JS_KFCS02".CINF t1 on t0."NAME" = t1."CompnyName"),
+	'_'),
+	"CFWId"),
+	 (select
+	 t0."CODE"
+			from AVA_OA_COMPANY t0
+			inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName"),
+	 "CFWId",
+	 "CFWName",
+	 'Y'
+		from "SBO_JS_KFCS02".OCFW)) WITH READ ONLY

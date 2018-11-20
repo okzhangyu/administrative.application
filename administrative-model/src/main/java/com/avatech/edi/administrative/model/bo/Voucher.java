@@ -15,6 +15,11 @@ public class Voucher implements IVoucher {
     private String companyName;
     private Date docDate;
     private String comments;
+    private String pzlx;
+    private String contractNo;
+    private String contractName;
+
+
 
     private List<VoucherItem> voucherItems;
 
@@ -69,6 +74,39 @@ public class Voucher implements IVoucher {
     }
 
     @Override
+    public void setPZLX(String pzlx) {
+       this.pzlx=pzlx;
+
+    }
+
+    @Override
+    public String getPZLX() {
+        return pzlx;
+    }
+
+    @Override
+    public String getContractNo() {
+        return contractNo;
+    }
+
+    @Override
+    public void setContractNo(String contractNo) {
+        this.contractNo=contractNo;
+
+    }
+
+    @Override
+    public String getContractName() {
+        return contractName;
+    }
+
+    @Override
+    public void setContractName(String contractName) {
+        this.contractName=contractName;
+
+    }
+
+    @Override
     public String toString() {
         return "Voucher{" +
                 "oaNumber:'" + oaNumber + '\'' +
@@ -76,6 +114,9 @@ public class Voucher implements IVoucher {
                 ", docDate:" + docDate +
                 ", comments:'" + comments + '\'' +
                 ", voucherItems:" + voucherItems +
+                ", pzlx:" + pzlx +
+                ", ContractNo:" +  contractNo+
+                ", ContractName:" +  contractName+
                 '}';
     }
 

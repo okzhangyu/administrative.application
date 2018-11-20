@@ -28,4 +28,7 @@ public interface IAccount {
      String getAcctLevel();
 
      void setAcctLevel(String acctLevel);
+
+     String getFirstLevelAcctName();
+     void  setFirstLevelAcctName(String firstLevelAcctName);
 }

@@ -1,0 +1,37 @@
+CREATE VIEW "OA_MID_BASE_TEST"."AVA_OA_VIEW_OPRC" ( "UNIQUEKEY",
+	 "COMPANYCODE",
+	 "PRCCODE",
+	 "PRCNAME",
+	 "DIMCODE",
+	 "ACTIVE" ) AS ((select
+	 concat(concat((select
+	 t0."CODE"
+					from AVA_OA_COMPANY t0
+					inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName"),
+	'_'),
+	"PrcCode"),
+	 (select
+	 t0."CODE"
+			from AVA_OA_COMPANY t0
+			inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName"),
+	 "PrcCode",
+	 "PrcName",
+	 "DimCode",
+	 "Active"
+		from "SBO_JS_KFCS01".OPRC)
+	UNION (select
+	 concat(concat((select
+	 t0."CODE"
+					from AVA_OA_COMPANY t0
+					inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName"),
+	'_'),
+	"PrcCode"),
+	 (select
+	 t0."CODE"
+			from AVA_OA_COMPANY t0
+			inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName"),
+	 "PrcCode",
+	 "PrcName",
+	 "DimCode",
+	 "Active"
+		from "SBO_JS_KFCS02".OPRC)) WITH READ ONLY

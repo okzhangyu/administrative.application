@@ -63,4 +63,10 @@ public interface IVoucherItem {
 
       String getWorkOrderNo();
       void setWorkOrderNo(String workOrderNo);
+
+      String getWorkOrderName();
+      void  setWorkOrderName(String workOrderName);
+
+      String getContractName();
+      void   setContractName(String contractName);
 }

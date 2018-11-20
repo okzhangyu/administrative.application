@@ -10,8 +10,3 @@ spring:
       show-sql: true
 server:
   port: 9092
-logging:
-  level:
-    org:
-      hibernate:
-        SQL: DEBUG

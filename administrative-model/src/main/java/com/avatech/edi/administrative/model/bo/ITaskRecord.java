@@ -53,4 +53,7 @@ public interface ITaskRecord {
      Integer getSyncTime();
 
      void setSyncTime(Integer syncTime);
+
+     String getLineNum();
+     void  setLineNum(String lineNum);
 }

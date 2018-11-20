@@ -29,6 +29,9 @@ public class Account implements IAccount {
     @Column(name = "Acctlevel")
     private String acctLevel;
 
+    @Column(name = "Firstlevelacctname")
+    private String firstLevelAcctName;
+
     @Override
     public String getKey() {
         return key;
@@ -90,6 +93,17 @@ public class Account implements IAccount {
     }
 
     @Override
+    public String getFirstLevelAcctName() {
+        return firstLevelAcctName;
+    }
+
+    @Override
+    public void setFirstLevelAcctName(String firstLevelAcctName) {
+        this.firstLevelAcctName=firstLevelAcctName;
+
+    }
+
+    @Override
     public String toString() {
         return "{" +
                 "key:'" + key + '\'' +
@@ -98,6 +112,7 @@ public class Account implements IAccount {
                 ", acctName:'" + acctName + '\'' +
                 ", active:'" + active + '\'' +
                 ", acctLevel:'" + acctLevel + '\'' +
+                ", firstLevelName:'" + firstLevelAcctName + '\'' +
                 '}';
     }
 }

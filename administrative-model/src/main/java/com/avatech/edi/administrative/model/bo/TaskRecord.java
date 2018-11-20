@@ -91,6 +91,9 @@ public class TaskRecord implements ITaskRecord {
     @Column(name="Synctime")
     private Integer syncTime;
 
+    @Column (name = "Linenum")
+    private String lineNum;
+
     public Integer getDocEntry() {
         return docEntry;
     }
@@ -185,6 +188,17 @@ public class TaskRecord implements ITaskRecord {
 
     public void setSyncTime(Integer syncTime) {
         this.syncTime = syncTime;
+    }
+
+    @Override
+    public String getLineNum() {
+        return lineNum;
+    }
+
+    @Override
+    public void setLineNum(String lineNum) {
+        this.lineNum=lineNum;
+
     }
 
     public TaskRecord() {

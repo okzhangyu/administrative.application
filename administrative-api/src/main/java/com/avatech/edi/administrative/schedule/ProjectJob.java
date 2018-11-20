@@ -47,10 +47,12 @@ public class ProjectJob {
             if (taskRecords.size() == 0)
                 return;
             logger.info(">>>>>>>>>>>>>>获取未同步项目主数据{" + taskRecords.size() + "}条");
-            List<Project> projects = projectService.fetchProjectByTask(taskRecords);
-            logger.info(">>>>>>>>>>>>>>同步项目主数据:" + projects.toString());
+            List<Project> projectList = projectService.fetchProjectByTask(taskRecords);
+            if(projectList.size()==0)
+                return;
+            logger.info(">>>>>>>>>>>>>>同步项目主数据:" + projectList.toString());
             RestTemplate template = new RestTemplate();
-            ResponseEntity<Response> result = template.postForEntity(request.getRequestUrl(MasterDataType.PROJECT, opType), projects, Response.class);
+            ResponseEntity<Response> result = template.postForEntity(request.getRequestUrl(MasterDataType.PROJECT, opType), projectList, Response.class);
             if (result.hasBody()) {
                 Response res = result.getBody();
                 taskService.updateTask(TaskRecord.getTaskResult(taskRecords,res));

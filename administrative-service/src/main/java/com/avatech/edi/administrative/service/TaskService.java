@@ -22,7 +22,7 @@ public class TaskService {
     }
 
     public List<TaskRecord> fetchTaskList(String objectCode,String opType){
-        return taskRepository.findByObjectCodeAndIsSyncAndOpType(objectCode,"N",opType);
+        return taskRepository.findTop30ByObjectCodeAndIsSyncAndOpType(objectCode,"N",opType);
     }
 
 
@@ -36,8 +36,8 @@ public class TaskService {
         for (TaskRecord task:taskRecords) {
             task.setIsSync(isSyncValue);
             task.setSyncMessage(message);
+            taskRepository.save(task);
         }
-        taskRepository.saveAll(taskRecords);
     }
 
     public void updateTask(TaskRecord taskRecord){

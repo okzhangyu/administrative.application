@@ -12,4 +12,12 @@ public class MasterData {
         return company + "_" + code;
 
     }
+    public static String getPrjUniqueKey(String company, String code,String lineNum){
+        if(company==null||code==null||lineNum==null||company.isEmpty()||code.isEmpty()||lineNum.isEmpty()){
+            throw new ModelException("公司代码或code或lineNum为空");
+
+        }
+        return company+ "_"+code +"_"+lineNum;
+
+    }
 }

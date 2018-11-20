@@ -38,17 +38,19 @@ public class ProjectService {
     }
 
     public List<Project> fetchProjectByTask(List<TaskRecord> taskRecords) {
-        List<Project> projects = new ArrayList<>();
-        Project project;
+        List<Project>projects = new ArrayList<>();
+        List<Project> projectlist=new ArrayList<>();
         for (TaskRecord task : taskRecords) {
             try {
-                project = projectRepository.findByKey(MasterData.getUniqueKey(task.getCompanyName(), task.getUniqueKey()));
-                if(project!=null)
-                    projects.add(project);
+                projects = projectRepository.findByKey(MasterData.getUniqueKey(task.getCompanyName(), task.getUniqueKey()));
+
+                projectlist.addAll(projects);
+
             } catch (Exception e) {
                 logger.error("查找项目错误：" + e.getMessage());
             }
         }
-        return projects;
+        return projectlist;
     }
+
 }
