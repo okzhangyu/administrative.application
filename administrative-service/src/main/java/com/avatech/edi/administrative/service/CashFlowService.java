@@ -33,17 +33,24 @@ public class CashFlowService {
 //
 //    }
 
-    public List<CashFlow> fetchCashFlowByTask(List<TaskRecord> taskRecords) {
+    public List<CashFlow> fetchCashFlowByTask(List<TaskRecord> taskRecords) throws Exception{
         List<CashFlow> cashFlows = new ArrayList<>();
         CashFlow cashFlow;
         for (TaskRecord task : taskRecords) {
             try {
                 cashFlow = cashFlowRepositoty.findByKey(MasterData.getUniqueKey(task.getCompanyName(), task.getUniqueKey()));
-                if(cashFlow != null)
+                if(cashFlow != null){
                     cashFlows.add(cashFlow);
-            } catch (Exception e) {
+                }else {
+                    logger.error("查找现金流错误:" +"现金流主数据"+ task.getCompanyName()+"公司中"+task.getUniqueKey()+"为空");
+                }
+            }
+            catch (Exception e) {
                 logger.error("查找现金流错误：" + e.getMessage());
             }
+        }
+        if (cashFlows.size()==0){
+            throw new Exception("成本中心数据为空");
         }
         return cashFlows;
     }

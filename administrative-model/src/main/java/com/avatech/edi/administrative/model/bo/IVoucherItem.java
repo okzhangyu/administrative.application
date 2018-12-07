@@ -69,4 +69,7 @@ public interface IVoucherItem {
 
       String getContractName();
       void   setContractName(String contractName);
+
+      String getuth();
+      void set(String uth);
 }

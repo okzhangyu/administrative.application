@@ -29,6 +29,7 @@ public class  VoucherItem implements IVoucherItem {
     private String workOrderNo;
     private String workOrderName;
     private String contractName;
+    private String uth;
 
     @Override
     public String getOANumber() {
@@ -101,6 +102,16 @@ public class  VoucherItem implements IVoucherItem {
     public void setContractName(String contractName) {
         this.contractName=contractName;
 
+    }
+
+    @Override
+    public String getuth() {
+        return uth;
+    }
+
+    @Override
+    public void set(String uth) {
+        this.uth=uth;
     }
 
     @Override

@@ -1,89 +1,69 @@
-drop   VIEW "OA_MID_BASE_TEST"."AVA_OA_VIEW_OPRJ";
 CREATE VIEW "OA_MID_BASE_TEST"."AVA_OA_VIEW_OPRJ" ( "UNIQUEKEY",
 	 "COMPANYCODE",
-	 "PROJECTCODE",
-	 "PROJECTNAME",
+	 "PRJCODE",
+	 "PRJNAME",
 	 "ACTIVE",
-	"ContractNo",
-	"ContractName",
-	"WorkOrderNo",
-	"WorkOrderName") AS (((select
+	 "CONTRACTNO",
+	 "CONTRACTNAME",
+	 "WORKORDERNO",
+	 "WORKORDERNAME",
+	 "ITEMNO" ) AS ((select
 	 concat(concat((select
-	 t0."CODE"
-						from AVA_OA_COMPANY t0
-						inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName"),
-
-	 '_'),
-	 (SELECT t0."DocEntry" from "SBO_JS_KFCS01".ORDR t0 inner join "SBO_JS_KFCS01".OPRJ t1 on t1."PrjCode"=t0."Project") ),
-	 (select
-	 t0."CODE"
-				from AVA_OA_COMPANY t0
-				inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName"),
-	 "PrjCode",
-	 "PrjName",
-	 "Active" ,
-	 (select t0."U_ContractNo" from "SBO_JS_KFCS01".ORDR t0 inner join "SBO_JS_KFCS01".OPRJ t1
-	  on t1."PrjCode"=t0."Project"),
-	  (select t0."U_ContractName" from "SBO_JS_KFCS01".OPRJ t0 inner join "SBO_JS_KFCS01".ORDR t1
-	  on t0."PrjCode"=t1."Project" ),
-	   (select t0."U_WorkOrderNo" from "SBO_JS_KFCS01".OPRJ t0 inner join "SBO_JS_KFCS01".ORDR t1
-	  on t0."PrjCode"=t1."Project"),
-	  (select t0."U_WorkOrderName" from "SBO_JS_KFCS01".OPRJ t0 inner join "SBO_JS_KFCS01".ORDR t1
-	  on t0."PrjCode"=t1."Project")
-			from "SBO_JS_KFCS01".OPRJ)))
-
-			select * from "OA_MID_BASE_TEST"."AVA_OA_VIEW_OPRJ"
-		UNION (select
-	 concat(concat((select
-	 t0."CODE"
-						from AVA_OA_COMPANY t0
-						inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName"),
-	 '_'),
-	 "U_HTH"),
-	 (select
-	 t0."CODE"
-				from AVA_OA_COMPANY t0
-				inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName"),
-	 "U_HTH",
-	 "U_HTH",
-	 'Y',
-	 2
-			FROM "SBO_JS_KFCS01".ORDR
-			WHERE IFNULL("U_HTH",
-	 '')!=''))
-	UNION (((select
-	 concat(concat((select
-	 t0."CODE"
-							from AVA_OA_COMPANY t0
-							inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName"),
-	 '_'),
-	 "U_GDH" ),
-	 (select
 	 t0."CODE"
 					from AVA_OA_COMPANY t0
-					inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName"),
-	 "U_GDH",
-	 "U_GDH",
-	 'Y' ,
-	 3
-				from "SBO_JS_KFCS01".RDR1
-				WHERE IFnull("U_GDH",
-	 '') !='')
-			UNION (select
-	 concat(concat((select
-	 t0."CODE"
-							from AVA_OA_COMPANY t0
-							inner join "SBO_KJS_ZDHKFCS".CINF t1 on t0."NAME" = t1."CompnyName"),
+					inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName" ),
 	 '_'),
-	 "U_HTH"),
+	 t0."DocEntry" ),
 	 (select
 	 t0."CODE"
+			from AVA_OA_COMPANY t0
+			inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName"),
+	 t2."PrjCode",
+	 t2."PrjName",
+	 t2."Active",
+	 t1."U_ContractNo",
+	 t1."U_ContractName",
+	 t0."U_WorkOrderNo",
+	 t0."U_WorkOrderName" ,
+	 concat(concat(concat(concat((select
+	 t0."CODE"
+							FROM AVA_OA_COMPANY t0
+							inner join "SBO_KJS_ZDHKFCS".CINF t1 on t0."NAME" = t1."CompnyName" ),
+	 '_'),
+	 t0."DocEntry"),
+	 '_'),
+	 t0."LineNum")
+		from "SBO_JS_KFCS01"."RDR1" t0
+		left join "SBO_JS_KFCS01"."ORDR" t1 on t0."DocEntry" = t1."DocEntry"
+		left join "SBO_JS_KFCS01"."OPRJ" t2 on ifnull(t0."Project",
+	 '') = t2."PrjCode")
+	UNION ALL (select
+	 concat(concat((select
+	 t0."CODE"
 					from AVA_OA_COMPANY t0
-					inner join "SBO_KJS_ZDHKFCS".CINF t1 on t0."NAME" = t1."CompnyName"),
-	 "U_HTH",
-	 "U_HTH",
-	 'Y',
-	 2
-				FROM "SBO_KJS_ZDHKFCS".ORDR
-				WHERE IFNULL("U_HTH",
-	 '')!='')))) WITH READ ONLY
+					inner join "SBO_KJS_ZDHKFCS".CINF t1 on t0."NAME" = t1."CompnyName" ),
+	 '_'),
+	 t0."DocEntry" ),
+	 (select
+	 t0."CODE"
+			from AVA_OA_COMPANY t0
+			inner join "SBO_KJS_ZDHKFCS".CINF t1 on t0."NAME" = t1."CompnyName"),
+	 t2."PrjCode",
+	 t2."PrjName",
+	 t2."Active",
+	 t1."U_ContractNo",
+	 t1."U_ContractName",
+	 t0."U_WorkOrderNo",
+	 t0."U_WorkOrderName" ,
+	 concat(concat(concat(concat((select
+	 t0."CODE"
+							FROM AVA_OA_COMPANY t0
+							inner join "SBO_KJS_ZDHKFCS".CINF t1 on t0."NAME" = t1."CompnyName" ),
+	 '_'),
+	 t0."DocEntry"),
+	 '_'),
+	 t0."LineNum")
+		from "SBO_KJS_ZDHKFCS"."RDR1" t0
+		left join "SBO_KJS_ZDHKFCS"."ORDR" t1 on t0."DocEntry" = t1."DocEntry"
+		left join "SBO_KJS_ZDHKFCS"."OPRJ" t2 on ifnull(t0."Project",
+	 '') = t2."PrjCode")) WITH READ ONLY

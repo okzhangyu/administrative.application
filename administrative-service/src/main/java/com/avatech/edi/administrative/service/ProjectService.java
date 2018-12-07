@@ -30,24 +30,28 @@ public class ProjectService {
     @Autowired
     private TaskService taskService;
 
-    public List<Project> fetchUnSyncProject(){
+    public List<Project> fetchUnSyncProject()throws Exception{
         List<TaskRecord> taskRecords = taskService.fetchTaskList(MasterDataType.PROJECT);
         if(taskRecords.size() == 0)
             return null;
         return fetchProjectByTask(taskRecords);
     }
 
-    public List<Project> fetchProjectByTask(List<TaskRecord> taskRecords) {
+    public List<Project> fetchProjectByTask(List<TaskRecord> taskRecords)throws Exception {
         List<Project>projects = new ArrayList<>();
         List<Project> projectlist=new ArrayList<>();
         for (TaskRecord task : taskRecords) {
             try {
                 projects = projectRepository.findByKey(MasterData.getUniqueKey(task.getCompanyName(), task.getUniqueKey()));
-
+                if (projects.size()==0){
+                    logger.error("查找项目错误:" +"项目主数据"+ task.getCompanyName()+"公司中"+task.getUniqueKey()+"为空");
+                }
                 projectlist.addAll(projects);
-
             } catch (Exception e) {
                 logger.error("查找项目错误：" + e.getMessage());
+            }
+            if (projectlist.size()==0){
+                throw new Exception("项目主数据为空");
             }
         }
         return projectlist;

@@ -16,11 +16,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.Semaphore;
 
 @Slf4j
 @RestController
 @RequestMapping("administrative/v1/*")
 public class VouchersController {
+
+    Semaphore semaphore =new Semaphore(1);
+
 
     private Logger logger = LoggerFactory.getLogger(VouchersController.class);
     @Autowired
@@ -28,20 +32,30 @@ public class VouchersController {
 
     @RequestMapping(value = "voucher",method ={RequestMethod.POST})
     public @ResponseBody Result generateVoucher(@RequestBody Voucher voucher){
-        logger.info("接收凭单信息>>>>>>>>>{0}",voucher.toString());
+        int avaliablePermits = semaphore.availablePermits();
+        logger.info("接收凭单信息>>>>>>>>>{"+ voucher.toString() +"}");
         Result result = new Result();
-        try{
-            if(voucher.getPZLX() == null || voucher.getPZLX().equals("1")){
-                result = Result.error("10002","凭证类型的值只能为1");
-            }else {
-                result = Result.ok(voucherService.saveVoucher(voucher));
+        if(voucher.getPZLX() == null || !voucher.getPZLX().equals("1")){
+            result = Result.error("10002",  "凭证类型的值只能为1");
+        }else {
+            if (avaliablePermits<=0){
+                return Result.error("1100","凭单资源正在被使用，请稍后再试");
             }
-        }catch (BaseException e){
-            return Result.error("10000",e.getMessage());
-        }catch (Exception e){
-            return Result.error("10001",e.getMessage());
+            try {
+                semaphore.acquire(1);
+                result = Result.ok(voucherService.saveVoucher(voucher));
+            }catch (BaseException e){
+                return Result.error("10000",e.getMessage());
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }catch (Exception e){
+                return Result.error("10001",e.getMessage());
+            }
+            finally {
+                semaphore.release();
+            }
         }
-        logger.info("凭单处理结果>>>>>>>>{0}",result.toString());
+        logger.info("凭单处理结果>>>>>>>>"+ result.toString());
         return result;
     }
 

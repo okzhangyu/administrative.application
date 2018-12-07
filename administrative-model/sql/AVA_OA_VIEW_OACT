@@ -3,51 +3,33 @@ CREATE VIEW "OA_MID_BASE_TEST"."AVA_OA_VIEW_OACT" ( "UNIQUEKEY",
 	 "ACCTCODE",
 	 "ACCTNAME",
 	 "ACTIVE",
-	 "ACCTLEVEL" ) AS (((select
+	 "ACCTLEVEL",
+	 "FIRSTLEVELACCTNAME" ) AS select
 	 concat(concat((select
-	 t0."CODE"
-						from AVA_OA_COMPANY t0
-						inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName"),
-	 '_'),
-	"AcctCode"),
-	 (select
-	 t0."CODE"
-				from AVA_OA_COMPANY t0
-				inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName"),
-	 "AcctCode",
-	 "AcctName",
-	 'Y',
-	 "Levels"
-			from "SBO_JS_KFCS01".OACT)
-		UNION (select
-	 concat(concat((select
-	 t0."CODE"
-						from AVA_OA_COMPANY t0
-						inner join "SBO_JS_KFCS02".CINF t1 on t0."NAME" = t1."CompnyName"),
-	 '_'),
-	"AcctCode"),
-	 (select
-	 t0."CODE"
-				from AVA_OA_COMPANY t0
-				inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName"),
-	 "AcctCode",
-	 "AcctName",
-	 'Y',
-	 "Levels"
-			from "SBO_JS_KFCS02".OACT))
-	UNION (select
-	 concat(concat((select
-	 t0."CODE"
-					from AVA_OA_COMPANY t0
-					inner join "SBO_JS_KFCS03".CINF t1 on t0."NAME" = t1."CompnyName"),
-	 '_'),
-	"AcctCode"),
-	 (select
 	 t0."CODE"
 			from AVA_OA_COMPANY t0
-			inner join "SBO_JS_KFCS01".CINF t1 on t0."NAME" = t1."CompnyName"),
-	 "AcctCode",
+			inner join "SBO_KJS_ZDHKFCS".CINF t1 on t0."NAME" = t1."CompnyName"),
+	 '_'),
+	 t2."AcctCode"),
+	 (select
+	 t0."CODE"
+	from AVA_OA_COMPANY t0
+	inner join "SBO_KJS_ZDHKFCS".CINF t1 on t0."NAME" = t1."CompnyName"),
+	 t2."AcctCode",
 	 "AcctName",
 	 'Y',
-	 "Levels"
-		from "SBO_JS_KFCS03".OACT)) WITH READ ONLY
+	 "Levels",
+	 "FirstAcctName"
+from (select
+	 "AcctCode",
+	 "AcctName",
+	 "Levels",
+
+	left("AcctCode",
+	 4) as "FirstAcctCode"
+	from "SBO_KJS_ZDHKFCS".OACT) t2
+left join (select
+	 "AcctCode",
+	 "AcctName" as "FirstAcctName"
+	from "SBO_KJS_ZDHKFCS".oact
+	where "Levels" = 2 ) t3 on t2."FirstAcctCode" = t3."AcctCode" WITH READ ONLY

@@ -47,13 +47,13 @@ public class DepartmentJob {
     public ObjectMapper mapper ;
 
     @Scheduled(cron = "0 0/5 * * * ?")
-    private void process(){
+    private void process() throws Exception {
         processData(OpType.ADD);
         processData(OpType.UPDATE);
         processData(OpType.DELETE);
     }
 
-    private void processData(String opType) {
+    private void processData(String opType) throws Exception{
         try {
             List<TaskRecord> taskRecords = taskService.fetchTaskList(MasterDataType.DEPARTMENT, opType);
             if (taskRecords.size() == 0)
@@ -64,6 +64,9 @@ public class DepartmentJob {
             ResponseEntity<String> result = null;
             for (TaskRecord record : taskRecords) {
                 department = departmentService.fetchDepartment(record);
+                if (department==null){
+                    throw new Exception("部门主数据为空");
+                }
                 if (record == null) {
                     record.setIsSync("E");
                     record.setSyncMessage(" 未找到部门信息");

@@ -35,7 +35,7 @@ public class CostCenterJob {
     @Autowired
     private HttpRequest request;
 
-    @Scheduled(cron = "0 0/5 * * * ?")
+    @Scheduled(cron = "0 0/1 * * * ?")
     private void process() {
         processData(OpType.ADD);
         processData(OpType.UPDATE);
@@ -60,6 +60,7 @@ public class CostCenterJob {
                 logger.error(">>>>>>>>>>>>>>同步成本中心主数据异常：" + result.getStatusCode() + result.getBody());
             }
         } catch (Exception e) {
+            logger.info(">>>>>>>>>>>>>>同步成本中心主数据结果：成本中心主数据为空同步失败");
             logger.error(">>>>>>>>>>>>>>同步成本中心主数据异常：", e);
         }
     }

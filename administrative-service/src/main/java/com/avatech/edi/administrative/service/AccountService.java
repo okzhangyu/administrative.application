@@ -54,8 +54,11 @@ public class AccountService {
         for (TaskRecord task : taskRecords) {
             try {
                 account = accountRepository.findByKey(MasterData.getUniqueKey(task.getCompanyName(), task.getUniqueKey()));
-               if(account !=null)
-                accounts.add(account);
+               if(account !=null) {
+                   accounts.add(account);
+               }else {
+                   logger.error("查找科目错误:" +"科目主数据"+ task.getCompanyName()+"公司中"+task.getUniqueKey()+"为空");
+               }
             } catch (Exception e) {
                 logger.error("查找科目错误：" + e.getMessage());
             }

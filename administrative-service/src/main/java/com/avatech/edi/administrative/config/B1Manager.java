@@ -7,14 +7,18 @@ import com.google.gson.reflect.TypeToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.WebApplicationContext;
 
+import javax.servlet.ServletContext;
 import java.io.*;
 import java.util.List;
 
 @Component
 public class B1Manager {
     private final Logger logger = LoggerFactory.getLogger(B1Manager.class);
-    private static final String COMPANY_INFO_CONFIG = "companyinfo.json";
+   String path ="C:\\Users\\Administrator\\Desktop\\companyconfig\\companyinfo.jason";
+        File file=new File(path);
 
     private static List<B1Connection> b1Connections;
 
@@ -24,9 +28,11 @@ public class B1Manager {
         InputStreamReader inputStreamReader = null;
         BufferedReader bufferedReader = null;
         try {
-            InputStream stream = getClass().getClassLoader().getResourceAsStream(COMPANY_INFO_CONFIG);
-            inputStreamReader = new InputStreamReader(stream); // 建立一个输入流对象reader
-            bufferedReader = new BufferedReader(inputStreamReader); // 建立一个对象，它把文件内容转成计算机能读懂的语言
+            FileReader fileReader = new FileReader(file);
+
+//            InputStream stream = getClass().getClassLoader().getResourceAsStream(path);
+//            inputStreamReader = new InputStreamReader(stream); // 建立一个输入流对象reader
+            bufferedReader = new BufferedReader(fileReader); // 建立一个对象，它把文件内容转成计算机能读懂的语言
             StringBuffer stringBuffer = new StringBuffer();
             String line = bufferedReader.readLine().trim();
             while (line != null) {
@@ -42,8 +48,6 @@ public class B1Manager {
             throw new ServiceException("50002", "读取配置文件出错");
         } finally {
             if (null != bufferedReader) bufferedReader.close();
-            if (null != inputStreamReader) inputStreamReader.close();
-            if (null != fileInputStream) fileInputStream.close();
         }
     }
 

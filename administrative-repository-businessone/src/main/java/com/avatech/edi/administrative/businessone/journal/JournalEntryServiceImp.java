@@ -19,11 +19,12 @@ public class JournalEntryServiceImp implements B1JournalEntryService{
     private Logger logger = LoggerFactory.getLogger(JournalEntryServiceImp.class);
     private final static String CASHFLOW = "U_YLY";
     private final static String OANUMBER = "U_OANumber";
-    private final  static  String ContractNo="U_ContractNo";
-    private final  static  String WorkOrderNo="U_WorkOrderNo";
+    private final  static String ContractNo="U_ContractNo";
+    private final  static String WorkOrderNo="U_WorkOrderNo";
     private final  static String  PZLX="U_PZLX";
     private final  static String  WorkOrderName="U_WorkOrderName";
     private final  static String  ContractName="U_ContractName";
+    private final static  String  UPH="U_UPH";
     @Override
     public String createJournalEntry(IVoucher voucher, B1Connection connection){
         BORepositoryBusinessOne boRepositoryBusinessOne = null;
@@ -57,6 +58,7 @@ public class JournalEntryServiceImp implements B1JournalEntryService{
                 if(!StringUtils.isEmpty(item.getProject())){
                     journalEntries.getLines().setProjectCode(item.getProject());
                 }
+
                 if(!StringUtils.isEmpty(item.getCashFlowCode())) {
                     //journalEntries.getLines().getPrimaryFormItems().setCashFlowLineItemID(Integer.valueOf(item.getCashFlowCode()));
                     journalEntries.getLines().getUserFields().getFields().item(CASHFLOW).setValue(item.getCashFlowCode());
@@ -73,7 +75,9 @@ public class JournalEntryServiceImp implements B1JournalEntryService{
                         journalEntries.getLines().getUserFields().getFields().item(ContractName).setValue(item.getContractName());
 
                     }
-
+                    if (item.getuth()!=null){
+                        journalEntries.getLines().getUserFields().getFields().item(UPH).setValue(item.getuth());
+                    }
                 }
                 if(item.getCredit() > 0)
                     journalEntries.getLines().setCredit(item.getCredit());
@@ -86,6 +90,7 @@ public class JournalEntryServiceImp implements B1JournalEntryService{
                 return company.getNewObjectKey();
             }else {
                 throw new B1Exception(company.getLastErrorCode() + ":" + company.getLastErrorDescription());
+
             }
         }catch (SBOCOMException e){
             logger.error("",e);

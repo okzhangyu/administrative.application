@@ -47,14 +47,14 @@ public class EmployeeJob {
     public ObjectMapper mapper ;
 
     @Scheduled(cron = "0 0/5 * * * ?")
-    private void process(){
+    private void process()throws Exception{
         processData(OpType.ADD);
         processData(OpType.UPDATE);
         processData(OpType.DELETE);
        
     }
 
-    private void processData(String opType) {
+    private void processData(String opType)throws Exception {
         try {
             List<TaskRecord> taskRecords = taskService.fetchTaskList(MasterDataType.EMPLOYEE, opType);
             if (taskRecords.size() == 0)
@@ -70,6 +70,9 @@ public class EmployeeJob {
                     record.setSyncMessage("未找到人员信息");
                     taskService.updateTask(record);
                     continue;
+                }
+                if (employee==null){
+                    throw new Exception("人员主数据为空");
                 }
                 try{
 
