@@ -13,8 +13,7 @@ import javax.persistence.*;
 @Table(name="AVA_OA_VIEW_OPRJ")
 public class Project implements IProject {
 
-
-    @Ignore
+    @Id
     @Column(name = "Uniquekey")
     private String key;
 
@@ -43,7 +42,7 @@ public class Project implements IProject {
     @Column(name = "Workordername")
     private String workOrderName;
 
-    @Id
+
     @Column(name = "Itemno")
     private String itemNo;
 

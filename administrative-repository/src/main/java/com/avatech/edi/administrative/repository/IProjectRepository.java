@@ -12,6 +12,6 @@ import java.util.List;
 
 public interface IProjectRepository extends CrudRepository<Project,String> {
 
-    List<Project> findByKey(String key);
+    List<Project> findByItemNo(String itemNo);
 
 }

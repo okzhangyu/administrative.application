@@ -1,21 +1,35 @@
 package com.avatech.edi.administrative.model.bo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 /**
  * @author Fancy
  * @date 2018/9/6
  */
 public class B1Connection {
     private String server;
+    @JsonProperty(value = "companyDB")
     private String companyDB;
+    @JsonProperty(value = "userName")
     private String userName;
+    @JsonProperty(value = "password")
     private String password;
+    @JsonProperty(value = "laguage")
     private Integer laguage;
+    @JsonProperty(value = "licenseServer")
     private String licenseServer;
+    @JsonProperty(value = "sldServer")
     private String sldServer;
+    @JsonProperty(value = "dbServiceType")
     private Integer dbServiceType;
+    @JsonProperty(value = "dbUsername")
     private String dbUsername;
+    @JsonProperty(value = "dbPassword")
     private String dbPassword;
+    @JsonProperty(value = "useTrusted")
     private Boolean useTrusted;
+    @JsonProperty(value = "companyName")
     private String companyName;
 
     

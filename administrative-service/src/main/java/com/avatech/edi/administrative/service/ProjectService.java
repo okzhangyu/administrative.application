@@ -42,7 +42,7 @@ public class ProjectService {
         List<Project> projectlist=new ArrayList<>();
         for (TaskRecord task : taskRecords) {
             try {
-                projects = projectRepository.findByKey(MasterData.getUniqueKey(task.getCompanyName(), task.getUniqueKey()));
+                projects = projectRepository.findByItemNo(MasterData.getUniqueKey(task.getCompanyName(), task.getUniqueKey()));
                 if (projects.size()==0){
                     logger.error("查找项目错误:" +"项目主数据"+ task.getCompanyName()+"公司中"+task.getUniqueKey()+"为空");
                 }
